@@ -19,7 +19,7 @@
         class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <beans:property name="prefix" value="" />
         <beans:property name="requestContextAttribute" value="application"/>
-        <beans:property name="suffix" value=".ftl" />
+        <beans:property name="suffix" value=".html" />
         <beans:property name="contentType" value="text/html;charset=UTF-8" />
     </beans:bean>
     
