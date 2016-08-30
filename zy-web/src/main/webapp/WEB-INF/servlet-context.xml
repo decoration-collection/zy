@@ -15,7 +15,7 @@
 	<annotation-driven/>
 	 <context:component-scan base-package="com.zy.web.*.action" />  
 	<resources mapping="/resources/**/" location="/resources/" />
-	<beans:bean id="viewResolver"
+<!--  	<beans:bean id="viewResolver"
         class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <beans:property name="prefix" value="" />
         <beans:property name="requestContextAttribute" value="application"/>
@@ -33,7 +33,7 @@
                 <beans:prop key="number_format">0.##########</beans:prop>
             </beans:props>
         </beans:property>
-    </beans:bean>
+    </beans:bean> 
 	<beans:bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<beans:property name="messageConverters">
@@ -44,8 +44,8 @@
 	</beans:bean>
 
 	<beans:bean id="jsonConverter"
-		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<beans:property name="supportedMediaTypes" value="application/json" />
-	</beans:bean>
+	</beans:bean> -->
 
 </beans:beans>

@@ -3,6 +3,15 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="zy-dao-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zy-dao-TRUNK/zy-dao-TRUNK">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="zy-service-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zy-service-TRUNK/zy-service-TRUNK">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="zy-util-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zy-util-TRUNK/zy-util-TRUNK">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="zy-web"/>
         <property name="java-output-path" value="/zy-web/target/classes"/>
     </wb-module>
