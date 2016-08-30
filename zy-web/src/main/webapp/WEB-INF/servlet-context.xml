@@ -13,9 +13,9 @@
 						http://www.springframework.org/schema/aop
 						http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	<annotation-driven/>
-	 <context:component-scan base-package="com.zy.web.*.action" />  
+	<context:component-scan base-package="com.zy.web" />  
 	<resources mapping="/resources/**/" location="/resources/" />
-<!--  	<beans:bean id="viewResolver"
+ 	<beans:bean id="viewResolver"
         class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <beans:property name="prefix" value="" />
         <beans:property name="requestContextAttribute" value="application"/>
@@ -46,6 +46,6 @@
 	<beans:bean id="jsonConverter"
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<beans:property name="supportedMediaTypes" value="application/json" />
-	</beans:bean> -->
+	</beans:bean>
 
 </beans:beans>

@@ -22,7 +22,7 @@
 		<mysql-version>5.1.26</mysql-version>
 		<net.sf.json-lib-version>2.4</net.sf.json-lib-version>
 		<org.apache.tomcat-jdbc-version>7.0.29</org.apache.tomcat-jdbc-version>
-		<org.codehaus.jackson-version>1.9.11</org.codehaus.jackson-version>
+		<org.codehaus.jackson-version>1.9.13</org.codehaus.jackson-version>
 		<freemarker-version>2.3.21</freemarker-version>
 	</properties>
 
@@ -57,7 +57,7 @@
 		</dependency>
 
 		<!-- spring - json -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
 			<version>${org.codehaus.jackson-version}</version>
@@ -66,21 +66,8 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${org.codehaus.jackson-version}</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-core</artifactId>
-		    <version>2.8.1</version>
-		</dependency>
-		
-	    <!-- freemarker -->
-         <dependency>
-              <groupId>org.freemarker</groupId>
-              <artifactId>freemarker</artifactId>
-              <version>${freemarker-version}</version>
-        </dependency>
+		</dependency> -->
+
 
 		<!-- logback -->
 		<dependency>
@@ -182,47 +169,33 @@
 			<version>3.2.0.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		<!-- freemarker -->
+         <dependency>
+              <groupId>org.freemarker</groupId>
+              <artifactId>freemarker</artifactId>
+              <version>2.3.21</version>
+        </dependency>
 
 	</dependencies>
-	<build>
-		<finalName>zhenyuan</finalName>
-		<plugins>
-			<!-- 同时打包源代码 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.4</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.25</version>
-				<configuration>
-					<!-- 增加systemProperties属性 -->
-					<systemProperties>
-						<systemProperty>
-							<name>org.mortbay.jetty.Request.maxFormContentSize</name>
-							<!-- -1代表不作限制 -->
-							<value>-1</value>
-						</systemProperty>
-					</systemProperties>
-					<scanIntervalSeconds>2</scanIntervalSeconds>
-					<webAppConfig>
-						<contextPath>/zhenyuan</contextPath>
-					</webAppConfig>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
+	
 	<!-- 配置资源库 -->
 	<repositories>
 		<repository>
