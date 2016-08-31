@@ -33,7 +33,24 @@
                 <beans:prop key="number_format">0.##########</beans:prop>
             </beans:props>
         </beans:property>
+        <beans:property name="freemarkerVariables">  
+            <beans:map>  
+                <beans:entry key="xml_escape" value-ref="fmXmlEscape" />  
+                <!--下面四个是在下面定义的-->  
+                <beans:entry key="extends" value-ref="extendsDirective"/>  
+                    <beans:entry key="override" value-ref="overrideDirective"/>  
+                    <beans:entry key="block" value-ref="blockDirective"/>  
+                    <beans:entry key="super" value-ref="superDirective"/>  
+            </beans:map>  
+        </beans:property> 
     </beans:bean> 
+    <beans:bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+    <!-- freemaker  Directive-->  
+    <beans:bean id="blockDirective" class="cn.org.rapid_framework.freemarker.directive.BlockDirective"/>  
+    <beans:bean id="extendsDirective" class="cn.org.rapid_framework.freemarker.directive.ExtendsDirective"/>  
+    <beans:bean id="overrideDirective" class="cn.org.rapid_framework.freemarker.directive.OverrideDirective"/>  
+    <beans:bean id="superDirective" class="cn.org.rapid_framework.freemarker.directive.SuperDirective"/> 
+    
 	<beans:bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<beans:property name="messageConverters">

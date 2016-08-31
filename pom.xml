@@ -142,13 +142,6 @@
             <version>2.2</version>
         </dependency>
 
-        <!-- common uitl -->
-        <dependency>
-            <groupId>com.cst.util</groupId>
-            <artifactId>common-util</artifactId>
-            <version>1.0.0.2</version>
-        </dependency>
-
         <!-- json -->
         <dependency>
             <groupId>net.sf.json-lib</groupId>

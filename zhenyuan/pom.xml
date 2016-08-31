@@ -56,19 +56,6 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!-- spring - json -->
-<!-- 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>${org.codehaus.jackson-version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${org.codehaus.jackson-version}</version>
-		</dependency> -->
-
-
 		<!-- logback -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -128,13 +115,6 @@
 			<version>2.2</version>
 		</dependency>
 
-		<!-- common uitl -->
-		<dependency>
-			<groupId>com.cst.util</groupId>
-			<artifactId>common-util</artifactId>
-			<version>1.0.0.2</version>
-		</dependency>
-
 		<!-- json -->
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
@@ -166,7 +146,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>3.2.0.RELEASE</version>
+			<version>4.2.2.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -174,10 +154,26 @@
 	
 	<!-- 配置资源库 -->
 	<repositories>
-		<repository>
+<!-- 		<repository>
 			<id>nexus</id>
 			<name>nexus</name>
 			<url>http://172.16.1.205:8081/nexus/content/groups/public/</url>
+		</repository> -->
+		<repository>
+			<id>jboss</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.com/maven2/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+		<repository>
+			<id>maven</id>
+			<name>maven Repository</name>
+			<url>http://repo1.maven.org/maven2/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
 		</repository>
 	</repositories>
 	<distributionManagement>

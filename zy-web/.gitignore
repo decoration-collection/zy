@@ -28,3 +28,4 @@ deployment.properties
 /target/
 /.settings/
 .classpath
+/target/
