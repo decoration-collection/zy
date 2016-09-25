@@ -1,0 +1,195 @@
+@import "_inc/reset.css";
+@import "_inc/ui-fontello.css";
+@import "_inc/ui-button.css";
+@import "_inc/unslider.css";
+@import "_inc/ui-dialog.css";
+body{
+    font-family: 'Microsoft YaHei', sans-serif;
+    background-color: rgba(255, 255, 255, .95);
+    min-width: 1180px;
+}
+body a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #5d6e80;
+}
+body a:hover {
+    color: #1dd2af;
+}
+.grid {
+    width: 1185px;
+    margin: 0 auto;
+    *zoom: 1;
+}
+.grid:before, .grid:after {
+    display: table;
+    line-height: 0;
+    content: ""
+}
+.grid:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.clearfix:after {
+    clear: both;
+}
+.highlight{
+    color: red;
+}
+.tl{
+    text-align:left;
+}
+.tc{
+    text-align:center;
+}
+.tr{
+    text-align:right;
+}
+.bc{
+    margin-left:auto;
+    margin-right:auto;
+}
+.fl{
+    float:left;
+    display:inline;
+}
+.fr{
+    float:right;
+    display:inline;
+}
+.cb{
+    clear:both;
+}
+.cl{
+    clear:left;
+}
+.cr{
+    clear:right;
+}
+.vm{
+    vertical-align:middle;
+}
+.pr{
+    position:relative;
+}
+.pa{
+    position:absolute;
+}
+.abs-right{
+    position:absolute;
+    right:0;
+}
+.zoom{
+    zoom:1;
+}
+.hide{
+    display: none;
+}
+.hidden{
+    visibility:hidden;
+}
+.none{
+    display:none;
+}
+
+/****************************** header & nav top **************************/
+.nav-top {
+    height: 40px;
+    line-height: 40px;
+    background-color: #2c3e50;
+}
+.nav-top .grid {
+    position: relative;
+}
+.nav-top .nav-top-left a, .nav-top .nav-top-right a {
+    color: white;
+}
+.nav-top-left {
+    display: inline-block;
+}
+.nav-top-left a {
+    display: inline-block;
+    height: 39px;
+    width: 140px;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+.nav-top-left a:hover {
+    background-color: #000;
+    color: #1dd2af;
+}
+.nav-top-right {
+    display: inline-block;
+    right: 0;
+    position: absolute;
+}
+.nav-top-right a {
+    display: inline-block;
+    height: 39px;
+    width: 39px;
+    /*border-right: 1px solid #17202a;*/
+    /*border-left: 1px solid #17202a;*/
+    text-align: center;
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+.nav-top-right a:hover {
+    background-color: #000;
+    color: #1dd2af;
+}
+.header {
+    height: 90px;
+    line-height: 90px;
+}
+.header .grid {
+    position: relative;
+}
+.header .h-logo {
+    /*background: url("../img/logo.png") no-repeat;*/
+    /*display: inline-block;*/
+    /*height: 90px;*/
+    /*width: 120px;*/
+    position: relative;
+}
+.header .h-logo img {
+    position: absolute;
+    height: 70px;
+    top: 10px;
+}
+.header .h-menu {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+}
+.header .h-menu .menu-li {
+    margin-left: 40px;
+    font-size: 16px;
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+.header .menu-li.active, .header .menu-li:hover {
+    color: #1dd2af;
+}
+/****************************** footer **************************/
+.footer {
+    height: 100px;
+    background-color: #2c3e50;
+    color: #fff;
+    text-align: center;
+}
+.footer p {
+    position: relative;
+    top: 45px;
+}

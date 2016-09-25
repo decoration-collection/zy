@@ -3,11 +3,28 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title><@block name="headTitle" >headTitle</@block></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <#include "inc/css_lib.html">
+    <@block name="ext_css"></@block>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+        <@block name="header">
+            <#include "header.html">
+        </@block>
+       
+        <@block name="content">
 
+        </@block>
+
+        <@block name="footer">
+            <#include "footer.html">
+        </@block>
+
+    </div>
+    <#include "inc/js_lib.html">
+    <@block name="ext_js"></@block>
 </body>
 </html>
