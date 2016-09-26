@@ -6,7 +6,7 @@ $(function () {
     function openDialog(){
     	$('.designer-img').on('click',function(e){
     		e.preventDefault();
-        var dialog = new IOT.Dialog({
+        var dialog = new ZY.Dialog({
             title: '', //窗口标题的html，如果不设置则无标题
             content: '<div class="designer-detail"></a><img src="/zy/resources/static/files/team/designer1-dialog.jpg"><div class="designer-intro"><h3>景俊霖</h3><p class="duty">首席设计师</p><p>从业时间：5年设计</p><p>设计理念：在有限空间创造无限可能</p><p>擅长风格：欧式、现代、地中海、美式、等…</p><p>获得荣誉：建玛特设计大赛二等奖</p><p>代表作品：龙湖.紫云台、保利香槟花园、沿海.赛洛城、景瑞.御蓝湾、协信.新都汇、东原桐麓、中铁北美时光、同景等…</p><div class="works"><img src="/zy/resources/static/files/team/works1.jpg"><img src="/zy/resources/static/files/team/works2.jpg"><img src="/zy/resources/static/files/team/works3.jpg"><img src="/zy/resources/static/files/team/works4.jpg"></div></div></div>',
             //窗口内容的html，必须是html格式不能是无格式纯文本，如果不设置则无内容

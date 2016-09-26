@@ -7,7 +7,7 @@
      * ui-dialog-ft代表btn的容器，具有20px的padding和灰色背景。这个容器里的所有.button类都有右边距15px
      *
      *
-     * var dialog = new IOT.Dialog({
+     * var dialog = new ZY.Dialog({
             title: '系统提示', //窗口标题的html，如果不设置则无标题
             content: '<div class="ui-dialog-bd"><p>欢迎！</p></div>',
             //窗口内容的html，必须是html格式不能是无格式纯文本，如果不设置则无内容
@@ -60,7 +60,7 @@
             this.$root.append($(options.content || ''));
 
             if(options.showFooter){
-                this.$root.append($('<div class="ui-dialog-ft"><a class="button j_dlg_close">关闭'+'</a></div>'));
+                this.$root.append($('<div class="ui-dialog-ft"><a class="button j_dlg_close">关闭</a></div>'));
             }
 
             this._$mask = $('<div class="ui-dialog-mask"></div>').appendTo($('body'));
@@ -97,13 +97,49 @@
                 height: $(document).height() + 'px'
             });
         },
+
+        isLoading: function(callback){
+            var $imgList = this.$root.find('img'),
+                deferreds = [];
+            $imgList.each(function () {
+                var dfd = $.Deferred();
+                $(this).bind('load', function () {
+                    dfd.resolve();
+                });
+                if (this.complete) {
+                    setTimeout(function () {
+                        dfd.resolve();
+                    }, 1e3);
+                }
+                deferreds.push(dfd);
+            });
+
+            $.when.apply(null, deferreds).done(callback);
+        },
+
         /**
          * 打开对话框
          * */
         open: function(){
-            this.setSize();
-            this.$root.show();
-            this._$mask.show();
+            var $imgList = this.$root.find('img'),
+                deferreds = [], thiz = this;
+            $imgList.each(function () {
+                var dfd = $.Deferred();
+                $(this).bind('load', function () {
+                    dfd.resolve();
+                });
+                if (this.complete) {
+                    setTimeout(function () {
+                        dfd.resolve();
+                    }, 1e3);
+                }
+                deferreds.push(dfd);
+            });
+            $.when.apply(null, deferreds).done(function() {
+                thiz.setSize();
+                thiz.$root.show();
+                thiz._$mask.show();
+            });
         },
         /**
          * 关闭对话框
@@ -133,8 +169,8 @@
 
     Dialog.confirm = function(message, ok, cancel){
         var content = '<div class="ui-dialog-bd">' + message + '</div>';
-        content += '<div class="ui-dialog-ft"><button class="button j_ok" href="#">确定' + '</button><button class="button secondary j_cancel" href="#">取消' +  + '</button></div>';
-        var confirmDialog = new IOT.Dialog({
+        content += '<div class="ui-dialog-ft"><button class="button j_ok" href="#">确定</button><button class="button secondary j_cancel" href="#">取消</button></div>';
+        var confirmDialog = new ZY.Dialog({
             className: 'ui-dialog-confirm',
             width: '450px',
             content: content,
@@ -154,5 +190,5 @@
         });
         confirmDialog.open();
     };
-    IOT.Dialog = Dialog;
+    ZY.Dialog = Dialog;
 })();
