@@ -29,7 +29,7 @@ fis.match( /^(\/files\/.*)$/i, {
 
 fis.match(/^(.*)/i, {
     release: '/$1',
-    url: '/zy$1'
+    url: '/$1'
 });
 
 // //topics文件夹下的less需要编译
@@ -106,9 +106,12 @@ fis.match(/^(.*\/.+\.min\.(?:js|css|less))$/i, {
 // });
 
 fis.match('*.less', {
-    parser: 'less',
+    parser: 'less2',
     rExt: '.css'
 });
+// fis.match('*.{js,css,png,less}', {
+//     useHash: true
+// });
 
 fis
     .media('test')
