@@ -1,3 +1,27 @@
 @import "_inc/AdminLTE.min.less";
 @import "../plugins/bootstrap/css/bootstrap.min.css";
 @import "skin/skin-blue.min.css";
+@import "_inc/ui-alert.less";
+/* parsley表单验证 */
+.parsley-errors-list{
+  margin-top: -1px;
+  padding-left: 0;
+  li{
+    padding: 2px 5px;
+    line-height: 2em;
+    color: #cc334c;
+    font-size: 12px;
+    list-style-type: none;
+  }
+
+}
+.parsley-error{
+  background: #fff0f0;
+  color: #d95c5c;
+  border-color: #cc334c;
+}
+.parsley-success{
+  background-color: #eeffe7;
+  color: #3c763d;
+  border-color: #bedebe;
+}
