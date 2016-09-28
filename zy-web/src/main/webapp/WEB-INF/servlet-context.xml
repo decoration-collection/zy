@@ -15,6 +15,15 @@
 	<annotation-driven/>
 	<context:component-scan base-package="com.zy.web" />  
 	<resources mapping="/resources/**/" location="/resources/" />
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/**" />
+			<exclude-mapping path="/resources/**/"/>
+			<beans:bean class="com.zy.web.filter.CommonInterceptor" />
+		</interceptor>
+	</interceptors>
+	
  	<beans:bean id="viewResolver"
         class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <beans:property name="prefix" value="" />

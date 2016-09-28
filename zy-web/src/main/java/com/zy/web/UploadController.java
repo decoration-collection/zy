@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+import com.zy.util.FiledsConstant;
 /**
 * @ClassName: UploadController
 * @Description: 文件上传控制器
@@ -28,8 +30,14 @@ public class UploadController {
 
     @RequestMapping("/upload2")  
     public String addUser(@RequestParam("file") CommonsMultipartFile[] files,HttpServletRequest request){  
+    	
+//    	String ctxPath = request.getSession().getServletContext().getRealPath("/") + FiledsConstant.DOWNLOAD_PERFIX_PATH;  
+    	
         for(int i = 0;i<files.length;i++){  
             System.out.println("fileName---------->" + files[i].getOriginalFilename());  
+            
+            
+            
             if(!files[i].isEmpty()){  
                 int pre = (int) System.currentTimeMillis();  
                 try {  

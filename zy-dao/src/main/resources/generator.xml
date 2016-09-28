@@ -11,35 +11,35 @@
 		</commentGenerator>
 
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://172.16.1.207:3307/appserver" userId="appserver"
-			password="cst2014">
+			connectionURL="jdbc:mysql://112.74.219.224:3306/zhenyuan" userId="root"
+			password="zyzsmysql123">
 		</jdbcConnection>
 
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 
-		<javaModelGenerator targetPackage="com.cst.authorize.dao.model"
-			targetProject="authorize-dao">
+		<javaModelGenerator targetPackage="com.zy.dao.model"
+			targetProject="zy-dao">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="com.cst.authorize.dao.mapper.sqlmap"
-			targetProject="authorize-dao\src\main\resources">
+		<sqlMapGenerator targetPackage="com.zy.dao.mapper.sqlmap"
+			targetProject="zy-dao\src\main\resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.cst.authorize.dao.mapper" targetProject="authorize-dao">
+			targetPackage="com.zy.dao.mapper" targetProject="zy-dao">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="app_user" domainObjectName="User"></table>
-		<table tableName="app_password" domainObjectName="Password"></table>
-		<table tableName="app_login" domainObjectName="Login"></table>
-		<table tableName="app_verify_mobile" domainObjectName="VerifyMobile"></table>
-		<table tableName="app_sms_log" domainObjectName="SmsLog"></table>
+		<table tableName="zyzs_case" domainObjectName="ZYCase"></table>
+		<table tableName="zyzs_craft" domainObjectName="ZYCraft"></table>
+		<table tableName="zyzs_designer" domainObjectName="ZYDesigner"></table>
+		<table tableName="zyzs_img" domainObjectName="ZYImg"></table>
+		<table tableName="zyzs_style" domainObjectName="ZYStyle"></table>
 
 	</context>
 
