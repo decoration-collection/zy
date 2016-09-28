@@ -12,11 +12,11 @@
     <div class="grid">
         <a class="h-logo" href="/"><img src="/zy/resources/static/files/logo.png" alt="logo" /></a>
         <div class="h-menu">
-            <a href="/zy/index" class="menu-li active" title="HOME">首页</a>
-            <a href="about.html" class="menu-li" title="INFO">公司介绍</a>
-            <a href="craft.html" class="menu-li" title="STANDARD">工艺标准</a>
-            <a href="case.html" class="menu-li" title="CASE">案例</a>
-            <a href="/zy/team/index" class="menu-li" title="TEAM">团队</a>
+            <a href="/zy/index" class="menu-li <@block name="index"></@block>" title="HOME">首页</a>
+            <a href="/zy/about/index" class="menu-li <@block name="about"></@block>" title="INFO">公司介绍</a>
+            <a href="/zy/craft/index" class="menu-li <@block name="craft"></@block>" title="STANDARD">工艺标准</a>
+            <a href="/zy/case/index" class="menu-li <@block name="case"></@block>" title="CASE">案例</a>
+            <a href="/zy/team/index" class="menu-li <@block name="team"></@block>" title="TEAM">团队</a>
         </div>
     </div>
 </div>

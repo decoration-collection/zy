@@ -2,14 +2,10 @@
  * Created by Karl on 2016/8/10.
  */
 $(function () {
-    function resizeRender(){
-       $('.content').css('min-height', Math.max($(window).height() - 90 - 40, $('.menu').height()));
-    }
-    resizeRender();
     $('.icon-wechat').on('click', function () {
         var dialog = new ZY.Dialog({
             title: '', //窗口标题的html，如果不设置则无标题
-            content: '<div><img src="img/wechat.png" /></div>',
+            content: '<div><img src="../resources/static/files/wechat.png" /></div>',
             //窗口内容的html，必须是html格式不能是无格式纯文本，如果不设置则无内容
             beforeClose: null, //调用close方法时执行的callback，如果此callback返回false则会阻止窗口的关闭
             showClose: true,

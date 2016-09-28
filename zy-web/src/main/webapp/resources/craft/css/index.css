@@ -1,0 +1,42 @@
+.craft-list {
+	padding-top: 50px;
+}
+.craft-list li {
+	height: 370px;
+	margin-bottom: 100px;
+}
+.craft-list .heighter {
+    height: 469px;
+}
+.craft-list .img-wrapper {
+	height: 100%;
+	display: inline-block;
+	overflow: hidden;
+	background: #eee;
+	margin-right: 50px;
+}
+.craft-list  .far-right {
+	margin-right: 0;
+}
+.craft-list .img-wrapper p {
+    line-height: 50px;
+    text-align: center;
+}
+.craft-list .parent-3 {
+	width: 262px;
+}
+.craft-list .parent-4 {
+	width: 550px;
+}
+.craft-list .parent-6 {
+	width: 574px;
+}
+.craft-list .parent-7 {
+	width: 866px;
+}
+.ui-dialog-pop {
+	background-color: rgb(51, 51, 51);
+}
+.ui-dialog-pop .ui-dialog-close {
+	top: -50px;
+}
