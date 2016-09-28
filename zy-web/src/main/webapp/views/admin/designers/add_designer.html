@@ -1,9 +1,85 @@
 <@override name="ext_css">
-    <#include "inc/css_admin.html">
+    <#include "inc/css_add_designer.html">
 </@override>
 <@override name="content">
 <div class="content-wrapper">
-
+	<section class="content-header">
+		<h1>新增设计师</h1>
+		<ol class="breadcrumb">
+	        <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
+	        <li><a href="#">设计师</a></li>
+	        <li class="active">新增设计师</li>
+	    </ol>
+	</section>
+	<section class="content">
+		<div class="box col-md-12">
+			<div class="box-header with-border">
+            	<h3 class="box-title">新增设计师</h3>
+            </div>
+            <form class="form-horizontal">
+            	<div class="box-body">
+                	<div class="form-group">
+                		<label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+                		<div class="col-sm-5">
+                    		<input type="text" class="form-control" id="inputEmail3" placeholder="请输入设计师姓名">
+                  		</div>
+                	</div>
+                	<div class="form-group">
+                		<label for="picture" class="col-sm-2 control-label">照片</label>
+                		<div class="col-sm-10">
+                			<button class="btn btn-info">上传图片</button>
+                		</div>
+                	</div>
+                	<div class="form-group">
+                		<label for="time" class="col-sm-2 control-label">从业时间</label>
+                		<div class="col-sm-5">
+                    		<!-- <input type="password" class="form-control" id="inputPassword3" placeholder="Password"> -->
+                    		<select class="form-control">
+			                    <option>1年以内</option>
+			                    <option>1-3年</option>
+			                    <option>3-5年</option>
+			                    <option>5-10年</option>
+			                    <option>10年以上</option>
+			                </select>
+                		</div>
+                	</div>
+                	<div class="form-group">
+                		<label for="idea" class="col-sm-2 control-label">设计理念</label>
+                		<div class="col-sm-5">
+                			<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                		</div>
+                	</div>
+                	<div class="form-group">
+                		<label for="honor" class="col-sm-2 control-label">获得荣誉</label>
+                		<div class="col-sm-5">
+                			<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                		</div>
+                	</div>
+                	<div class="form-group">
+                		<label for="production" class="col-sm-2 control-label">代表作品</label>
+                		<div class="col-sm-5">
+                			<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                		</div>
+                	</div>
+                	<div class="form-group">
+                		<label for="productionImage" class="col-sm-2 control-label">作品展示</label>
+                		<div class="col-sm-5">
+                			<div class="form-control"></div>
+                		</div>
+                	</div>
+            	</div>
+	            <div class="box-footer col-sm-8">
+	            	<!-- <button type="submit" class="btn btn-default">Cancel</button> -->
+	                <button type="submit" class="btn btn-info pull-right">新增</button>
+	            </div>
+            </form>
+		</div>
+	</section>
+	
 </div>
+</@override>
+
+<@override name="ext_js">
+    <#include "inc/js_add_designer.html">
 </@override>
 <@extends name="../../admin_common/base.html"/>
