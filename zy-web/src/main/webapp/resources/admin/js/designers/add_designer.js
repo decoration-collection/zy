@@ -13,7 +13,7 @@ $(function(){
 		        // 自动上传。
 		        auto: true,
 		        // swf文件路径
-		        swf: '/js/Uploader.swf',
+		        swf: '/zy/resources/static/admin_common/plugins/webuploader/Uploader.swf',
 		        // 文件接收服务端。
 		        server: 'http://webuploader.duapp.com/server/fileupload.php',
 		        // 选择文件的按钮。可选。

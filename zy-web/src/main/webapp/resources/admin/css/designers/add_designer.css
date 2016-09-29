@@ -1,22 +1,17 @@
-#container {
-    color: #838383;
-    font-size: 12px;
-}
-
-#uploader .queueList {
+#productionUploader .queueList {
     margin: 20px;
     border: 3px dashed #e6e6e6;
 }
-#uploader .queueList.filled {
+#productionUploader .queueList.filled {
     padding: 17px;
     margin: 0;
     border: 3px dashed transparent;
 }
-#uploader .queueList.webuploader-dnd-over {
+#productionUploader .queueList.webuploader-dnd-over {
     border: 3px dashed #999999;
 }
 
-#uploader p {margin: 0;}
+#productionUploader p {margin: 0;}
 
 .element-invisible {
     position: absolute !important;
@@ -24,17 +19,17 @@
     clip: rect(1px,1px,1px,1px);
 }
 
-#uploader .placeholder {
-    min-height: 350px;
-    padding-top: 178px;
+#productionUploader .placeholder {
+    min-height: 200px;
+    padding-top: 100px;
     text-align: center;
-    background: url(../images/image.png) center 93px no-repeat;
+    background: url(/zy/resources/static/files/admin/image.png) center 30px no-repeat;
     color: #cccccc;
     font-size: 18px;
     position: relative;
 }
 
-#uploader .placeholder .webuploader-pick {
+/* #productionUploader .placeholder .webuploader-pick {
     font-size: 18px;
     background: #00b7ee;
     border-radius: 3px;
@@ -46,13 +41,13 @@
     margin: 0 auto 20px auto;
     cursor: pointer;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
+} */
 
-#uploader .placeholder .webuploader-pick-hover {
+#productionUploader .placeholder .webuploader-pick-hover {
     background: #00a2d4;
 }
 
-#uploader .placeholder .flashTip {
+#productionUploader .placeholder .flashTip {
     color: #666666;
     font-size: 12px;
     position: absolute;
@@ -60,21 +55,21 @@
     text-align: center;
     bottom: 20px;
 }
-#uploader .placeholder .flashTip a {
+#productionUploader .placeholder .flashTip a {
     color: #0785d1;
     text-decoration: none;
 }
-#uploader .placeholder .flashTip a:hover {
+#productionUploader .placeholder .flashTip a:hover {
     text-decoration: underline;
 }
 
-#uploader .filelist {
+#productionUploader .filelist {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-#uploader .filelist:after {
+#productionUploader .filelist:after {
     content: '';
     display: block;
     width: 0;
@@ -83,10 +78,10 @@
     clear: both;
 }
 
-#uploader .filelist li {
+#productionUploader .filelist li {
     width: 110px;
     height: 110px;
-    background: url(../images/bg.png) no-repeat;
+    background: url(/zy/resources/static/files/admin/bg.png) no-repeat;
     text-align: center;
     margin: 0 8px 20px 0;
     position: relative;
@@ -96,12 +91,12 @@
     font-size: 12px;
 }
 
-#uploader .filelist li p.log {
+#productionUploader .filelist li p.log {
     position: relative;
     top: -45px;
 }
 
-#uploader .filelist li p.title {
+#productionUploader .filelist li p.title {
     position: absolute;
     top: 0;
     left: 0;
@@ -114,7 +109,7 @@
     text-align: left;
 }
 
-#uploader .filelist li p.progress {
+#productionUploader .filelist li p.progress {
     position: absolute;
     width: 100%;
     bottom: 0;
@@ -127,7 +122,7 @@
     background: none;
     -webkit-box-shadow: 0 0 0;
 }
-#uploader .filelist li p.progress span {
+#productionUploader .filelist li p.progress span {
     display: none;
     overflow: hidden;
     width: 0;
@@ -174,7 +169,7 @@
     }
 }
 
-#uploader .filelist li p.imgWrap {
+#productionUploader .filelist li p.imgWrap {
     position: relative;
     z-index: 2;
     line-height: 110px;
@@ -196,11 +191,11 @@
     transition: 200ms ease-out;
 }
 
-#uploader .filelist li img {
+#productionUploader .filelist li img {
     width: 100%;
 }
 
-#uploader .filelist li p.error {
+#productionUploader .filelist li p.error {
     background: #f43838;
     color: #fff;
     position: absolute;
@@ -212,7 +207,7 @@
     z-index: 100;
 }
 
-#uploader .filelist li .success {
+#productionUploader .filelist li .success {
     display: block;
     position: absolute;
     left: 0;
@@ -223,7 +218,7 @@
     background: url(../images/success.png) no-repeat right bottom;
 }
 
-#uploader .filelist div.file-panel {
+#productionUploader .filelist div.file-panel {
     position: absolute;
     height: 0;
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000')\0;
@@ -235,7 +230,7 @@
     z-index: 300;
 }
 
-#uploader .filelist div.file-panel span {
+#productionUploader .filelist div.file-panel span {
     width: 24px;
     height: 24px;
     display: inline;
@@ -247,28 +242,28 @@
     cursor: pointer;
 }
 
-#uploader .filelist div.file-panel span.rotateLeft {
+#productionUploader .filelist div.file-panel span.rotateLeft {
     background-position: 0 -24px;
 }
-#uploader .filelist div.file-panel span.rotateLeft:hover {
+#productionUploader .filelist div.file-panel span.rotateLeft:hover {
     background-position: 0 0;
 }
 
-#uploader .filelist div.file-panel span.rotateRight {
+#productionUploader .filelist div.file-panel span.rotateRight {
     background-position: -24px -24px;
 }
-#uploader .filelist div.file-panel span.rotateRight:hover {
+#productionUploader .filelist div.file-panel span.rotateRight:hover {
     background-position: -24px 0;
 }
 
-#uploader .filelist div.file-panel span.cancel {
+#productionUploader .filelist div.file-panel span.cancel {
     background-position: -48px -24px;
 }
-#uploader .filelist div.file-panel span.cancel:hover {
+#productionUploader .filelist div.file-panel span.cancel:hover {
     background-position: -48px 0;
 }
 
-#uploader .statusBar {
+#productionUploader .statusBar {
     height: 63px;
     border-top: 1px solid #dadada;
     padding: 0 20px;
@@ -277,7 +272,7 @@
     position: relative;
 }
 
-#uploader .statusBar .progress {
+#productionUploader .statusBar .progress {
     border: 1px solid #1483d8;
     width: 198px;
     background: #fff;
@@ -290,7 +285,7 @@
     position: relative;
     margin: 0 10px 0 0;
 }
-#uploader .statusBar .progress span.percentage {
+#productionUploader .statusBar .progress span.percentage {
     width: 0;
     height: 100%;
     left: 0;
@@ -298,18 +293,18 @@
     background: #1483d8;
     position: absolute;
 }
-#uploader .statusBar .progress span.text {
+#productionUploader .statusBar .progress span.text {
     position: relative;
     z-index: 10;
 }
 
-#uploader .statusBar .info {
+#productionUploader .statusBar .info {
     display: inline-block;
     font-size: 14px;
     color: #666666;
 }
 
-#uploader .statusBar .btns {
+#productionUploader .statusBar .btns {
     position: absolute;
     top: 10px;
     right: 20px;
@@ -321,10 +316,10 @@
     float: left;
 }
 
-#uploader .statusBar .btns .webuploader-pick,
-#uploader .statusBar .btns .uploadBtn,
-#uploader .statusBar .btns .uploadBtn.state-uploading,
-#uploader .statusBar .btns .uploadBtn.state-paused {
+#productionUploader .statusBar .btns .webuploader-pick,
+#productionUploader .statusBar .btns .uploadBtn,
+#productionUploader .statusBar .btns .uploadBtn.state-uploading,
+#productionUploader .statusBar .btns .uploadBtn.state-paused {
     background: #ffffff;
     border: 1px solid #cfcfcf;
     color: #565656;
@@ -336,23 +331,33 @@
     font-size: 14px;
     float: left;
 }
-#uploader .statusBar .btns .webuploader-pick-hover,
-#uploader .statusBar .btns .uploadBtn:hover,
-#uploader .statusBar .btns .uploadBtn.state-uploading:hover,
-#uploader .statusBar .btns .uploadBtn.state-paused:hover {
+#productionUploader .statusBar .btns .webuploader-pick-hover,
+#productionUploader .statusBar .btns .uploadBtn:hover,
+#productionUploader .statusBar .btns .uploadBtn.state-uploading:hover,
+#productionUploader .statusBar .btns .uploadBtn.state-paused:hover {
     background: #f0f0f0;
 }
 
-#uploader .statusBar .btns .uploadBtn {
+#productionUploader .statusBar .btns .uploadBtn {
     background: #00b7ee;
     color: #fff;
     border-color: transparent;
 }
-#uploader .statusBar .btns .uploadBtn:hover {
+#productionUploader .statusBar .btns .uploadBtn:hover {
     background: #00a2d4;
 }
 
-#uploader .statusBar .btns .uploadBtn.disabled {
+#productionUploader .statusBar .btns .uploadBtn.disabled {
     pointer-events: none;
     opacity: 0.6;
+}
+.production-wrapper {
+    position: relative;
+    /*padding: 45px 15px 15px;*/
+    margin: 15px 0;
+    background-color: #fafafa;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, .05);
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px 0;
 }
