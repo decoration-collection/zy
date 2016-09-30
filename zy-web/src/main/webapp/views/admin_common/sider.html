@@ -12,7 +12,7 @@
                     </span>
                 </a>
             </li>
-            <li class="treeview">
+            <li class="treeview <@block name='t_case'></@block>">
                 <a href="#">
                     <i class="fa fa-files-o"></i> <span>案例</span>
                     <span class="pull-right-container">
@@ -20,11 +20,11 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> 全部案例</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> 新增案例</a></li>
+                    <li class="<@block name='t_case_all'></@block>"><a href="/zy/admin/case/all"><i class="fa fa-circle-o"></i> 全部案例</a></li>
+                    <li class="<@block name='t_case_add'></@block>"><a href="/zy/admin/case/add"><i class="fa fa-circle-o"></i> 新增案例</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview <@block name='t_design'></@block>">
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>设计师</span>
                     <span class="pull-right-container">
@@ -32,11 +32,11 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/zy/admin/designers/all"><i class="fa fa-circle-o"></i> 全部设计师</a></li>
-                    <li><a href="/zy/admin/designers/add"><i class="fa fa-circle-o"></i> 新增设计师</a></li>
+                    <li class="<@block name='t_design_all'></@block>"><a href="/zy/admin/designers/all"><i class="fa fa-circle-o"></i> 全部设计师</a></li>
+                    <li class="<@block name='t_design_add'></@block>"><a href="/zy/admin/designers/add"><i class="fa fa-circle-o"></i> 新增设计师</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview <@block name='t_craft'></@block>">
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>工艺标准</span>
                     <span class="pull-right-container">
@@ -44,8 +44,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/zy/admin/crafts/all"><i class="fa fa-circle-o"></i> 全部工艺</a></li>
-                    <li><a href="/zy/admin/crafts/add"><i class="fa fa-circle-o"></i> 新增工艺</a></li>
+                    <li class="<@block name='t_craft_all'></@block>"><a href="/zy/admin/crafts/all"><i class="fa fa-circle-o"></i> 全部工艺</a></li>
+                    <li class="<@block name='t_craft_add'></@block>"><a href="/zy/admin/crafts/add"><i class="fa fa-circle-o"></i> 新增工艺</a></li>
                 </ul>
             </li>
         </ul>
