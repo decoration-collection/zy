@@ -5,12 +5,22 @@ import java.util.Map;
 
 public class ResultMap {
 
-	public static Map<String,Object> buildMap(int code,String msg,String data) {
+/*	public static Map<String,Object> buildMap(int code,String msg,String data) {
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("code", code);
 		resultMap.put("msg", msg);
 		if(null != data && !"".equals(data)) {
 			resultMap.put("data", data);
+		}
+		return resultMap;
+	}*/
+	
+	public static Map<String,Object> buildMap(int code,String msg,Map<String,String> dataMap) {
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		resultMap.put("code", code);
+		resultMap.put("msg", msg);
+		if(null != dataMap && !dataMap.isEmpty()) {
+			resultMap.put("data", dataMap);
 		}
 		return resultMap;
 	}
