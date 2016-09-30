@@ -14,27 +14,35 @@
 	<section class="content">
 		<div class="box col-md-12">
 			<div class="box-header with-border">
-            	<h3 class="box-title">新增设计师</h3>
+            	<!-- <h3 class="box-title">新增设计师</h3> -->
+                <div class="col-sm-10">
+                    <h3 class="box-title">新增设计师</h3>
+                </div>
+                <div class="col-sm-2">
+                    <a href="/zy/admin/designers/all" class="btn btn-block btn-primary">返回列表</a>
+                </div>
             </div>
             <form class="form-horizontal">
             	<div class="box-body">
                 	<div class="form-group">
-                		<label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+                		<label for="name" class="col-sm-3 control-label">姓名</label>
                 		<div class="col-sm-5">
-                    		<input type="text" class="form-control" id="inputEmail3" placeholder="请输入设计师姓名">
+                    		<input type="text" name="" class="form-control" id="name" placeholder="请输入设计师姓名">
                   		</div>
                 	</div>
                 	<div class="form-group">
-                		<label for="picture" class="col-sm-2 control-label">照片</label>
-                		<div class="col-sm-10">
-                			<button class="btn btn-info">上传图片</button>
+                		<label for="" class="col-sm-3 control-label">照片</label>
+                		<div class="col-sm-5" id="uploader_picture">
+                			<!-- <button class="btn btn-info">上传图片</button> -->
+                            <div id="fileList" class="uploader-list"></div>
+                            <div id="filePicker">选择图片</div>
                 		</div>
                 	</div>
                 	<div class="form-group">
-                		<label for="time" class="col-sm-2 control-label">从业时间</label>
+                		<label for="time" class="col-sm-3 control-label">从业时间</label>
                 		<div class="col-sm-5">
                     		<!-- <input type="password" class="form-control" id="inputPassword3" placeholder="Password"> -->
-                    		<select class="form-control">
+                    		<select name="" class="form-control" id="time">
 			                    <option>1年以内</option>
 			                    <option>1-3年</option>
 			                    <option>3-5年</option>
@@ -44,33 +52,53 @@
                 		</div>
                 	</div>
                 	<div class="form-group">
-                		<label for="idea" class="col-sm-2 control-label">设计理念</label>
+                		<label for="idea" class="col-sm-3 control-label">设计理念</label>
                 		<div class="col-sm-5">
-                			<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                			<textarea name="" class="form-control" id="idea" rows="3" placeholder="Enter ..."></textarea>
                 		</div>
                 	</div>
                 	<div class="form-group">
-                		<label for="honor" class="col-sm-2 control-label">获得荣誉</label>
+                		<label for="honor" class="col-sm-3 control-label">获得荣誉</label>
                 		<div class="col-sm-5">
-                			<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                			<textarea name="" class="form-control" id="honor" rows="3" placeholder="Enter ..."></textarea>
                 		</div>
                 	</div>
                 	<div class="form-group">
-                		<label for="production" class="col-sm-2 control-label">代表作品</label>
+                		<label for="production" class="col-sm-3 control-label">代表作品</label>
                 		<div class="col-sm-5">
-                			<textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                			<textarea name="" class="form-control" id="production" rows="3" placeholder="Enter ..."></textarea>
                 		</div>
                 	</div>
                 	<div class="form-group">
-                		<label for="productionImage" class="col-sm-2 control-label">作品展示</label>
-                		<div class="col-sm-5">
-                			<div class="form-control"></div>
+                		<label for="" class="col-sm-3 control-label">作品展示</label>
+                		<div class="col-sm-8">
+                			<!-- <div class="form-control"></div> -->
+                            <div id="productionUploader" class="production-wrapper">
+                                <div class="queueList">
+                                    <div id="dndArea" class="placeholder">
+                                        <div id="productionPicker"></div>
+                                        <p>或将照片拖到这里，最多可展示4张作品图</p>
+                                    </div>
+                                </div>
+                                <div class="statusBar" style="display:none;">
+                                    <div class="progress">
+                                        <span class="text">0%</span>
+                                        <span class="percentage"></span>
+                                    </div><div class="info"></div>
+                                    <div class="btns">
+                                        <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                                    </div>
+                                </div>
+                            </div>
                 		</div>
                 	</div>
             	</div>
-	            <div class="box-footer col-sm-8">
+	            <div class="box-footer">
+                    <label for="" class="col-sm-3 control-label"></label>
 	            	<!-- <button type="submit" class="btn btn-default">Cancel</button> -->
-	                <button type="submit" class="btn btn-info pull-right">新增</button>
+                    <div class="col-sm-5">
+                        <button type="submit" class="btn btn-info">新增</button>
+                    </div>
 	            </div>
             </form>
 		</div>
