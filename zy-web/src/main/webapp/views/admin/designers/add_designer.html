@@ -6,7 +6,7 @@
 <@override name="content">
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>新增设计师</h1>
+		<h1><#if isEdit == true>编辑设计师</#if><#if isEdit == false>新增设计师</#if></h1>
 		<ol class="breadcrumb">
 	        <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
 	        <li><a href="#">设计师</a></li>
@@ -16,24 +16,26 @@
 	<section class="content">
 		<div class="box col-md-12">
 			<div class="box-header with-border">
-            	<!-- <h3 class="box-title">新增设计师</h3> -->
                 <div class="col-sm-10">
-                    <h3 class="box-title">新增设计师</h3>
+                    <!-- <h3 class="box-title">新增设计师</h3> -->
                 </div>
                 <div class="col-sm-2">
                     <a href="/zy/admin/designers/all" class="btn btn-block btn-primary">返回列表</a>
                 </div>
             </div>
-            <form class="form-horizontal">
+            <form class="form-horizontal j_designers_form">
+                <input type="hidden" id="designer_id" name="designer_id" value="${(designerobj.designer_id)!}">
+                <input type="hidden" id="designer_img" name="designer_img" value="${(designerobj.designer_img)!}">
             	<div class="box-body">
                 	<div class="form-group">
                 		<label for="name" class="col-sm-3 control-label">姓名</label>
                 		<div class="col-sm-5">
-                    		<input type="text" name="" class="form-control" id="name" placeholder="请输入设计师姓名">
+                    		<input type="text" name="name" class="form-control" id="name" placeholder="请输入设计师姓名">
                   		</div>
                 	</div>
                 	<div class="form-group">
                 		<label for="" class="col-sm-3 control-label">照片</label>
+                        <input>
                 		<div class="col-sm-5" id="uploader_picture">
                 			<!-- <button class="btn btn-info">上传图片</button> -->
                             <div id="fileList" class="uploader-list"></div>
@@ -41,10 +43,10 @@
                 		</div>
                 	</div>
                 	<div class="form-group">
-                		<label for="time" class="col-sm-3 control-label">从业时间</label>
+                		<label for="working_time" class="col-sm-3 control-label">从业时间</label>
                 		<div class="col-sm-5">
                     		<!-- <input type="password" class="form-control" id="inputPassword3" placeholder="Password"> -->
-                    		<select name="" class="form-control" id="time">
+                    		<select name="working_time" class="form-control" id="working_time">
 			                    <option>1年以内</option>
 			                    <option>1-3年</option>
 			                    <option>3-5年</option>
@@ -54,25 +56,25 @@
                 		</div>
                 	</div>
                 	<div class="form-group">
-                		<label for="idea" class="col-sm-3 control-label">设计理念</label>
+                		<label for="design_concept" class="col-sm-3 control-label">设计理念</label>
                 		<div class="col-sm-5">
-                			<textarea name="" class="form-control" id="idea" rows="3" placeholder="Enter ..."></textarea>
+                			<textarea name="design_concept" class="form-control" id="design_concept" rows="3" placeholder="Enter ..."></textarea>
                 		</div>
                 	</div>
                 	<div class="form-group">
                 		<label for="honor" class="col-sm-3 control-label">获得荣誉</label>
                 		<div class="col-sm-5">
-                			<textarea name="" class="form-control" id="honor" rows="3" placeholder="Enter ..."></textarea>
+                			<textarea name="honor" class="form-control" id="honor" rows="3" placeholder="Enter ..."></textarea>
                 		</div>
                 	</div>
                 	<div class="form-group">
-                		<label for="production" class="col-sm-3 control-label">代表作品</label>
+                		<label for="works" class="col-sm-3 control-label">代表作品</label>
                 		<div class="col-sm-5">
-                			<textarea name="" class="form-control" id="production" rows="3" placeholder="Enter ..."></textarea>
+                			<textarea name="works" class="form-control" id="works" rows="3" placeholder="Enter ..."></textarea>
                 		</div>
                 	</div>
                 	<div class="form-group">
-                		<label for="" class="col-sm-3 control-label">作品展示</label>
+                		<label for="works_show" class="col-sm-3 control-label">作品展示</label>
                 		<div class="col-sm-8">
                 			<!-- <div class="form-control"></div> -->
                             <div id="productionUploader" class="production-wrapper">
@@ -99,7 +101,7 @@
                     <label for="" class="col-sm-3 control-label"></label>
 	            	<!-- <button type="submit" class="btn btn-default">Cancel</button> -->
                     <div class="col-sm-5">
-                        <button type="submit" class="btn btn-info">新增</button>
+                        <button type="submit" class="btn btn-info j_submit">新增</button>
                     </div>
 	            </div>
             </form>

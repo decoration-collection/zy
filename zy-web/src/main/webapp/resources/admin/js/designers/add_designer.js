@@ -15,7 +15,7 @@ $(function(){
 		        // swf文件路径
 		        swf: '/zy/resources/static/admin_common/plugins/webuploader/Uploader.swf',
 		        // 文件接收服务端。
-		        server: 'http://webuploader.duapp.com/server/fileupload.php',
+		        server: '/zy/admin/upload',
 		        // 选择文件的按钮。可选。
 		        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
 		        pick: '#filePicker',
@@ -28,26 +28,19 @@ $(function(){
 		    });
 
 		    // 当有文件添加进来的时候
-		    uploader.on( 'fileQueued', function( file ) {
-		        var $li = $(
-		                '<div id="' + file.id + '" class="file-item thumbnail">' +
-		                    '<img>' +
-		                    '<div class="info">' + file.name + '</div>' +
-		                '</div>'
-		                ),
-		            $img = $li.find('img');
+		    uploader.on('fileQueued', function(file) {
+		        var $img = $('<img>');
 
-		        $list.append( $li );
+		        $list.append($img);
 
 		        // 创建缩略图
-		        uploader.makeThumb( file, function( error, src ) {
-		            if ( error ) {
+		        uploader.makeThumb(file, function(error,src) {
+		            if (error) {
 		                $img.replaceWith('<span>不能预览</span>');
 		                return;
 		            }
-
-		            $img.attr( 'src', src );
-		        }, thumbnailWidth, thumbnailHeight );
+		            $img.attr('src',src);
+		        }, thumbnailWidth, thumbnailHeight);
 		    });
 
 		    // 文件上传过程中创建进度条实时显示。
@@ -58,7 +51,7 @@ $(function(){
 		        // 避免重复创建
 		        if ( !$percent.length ) {
 		            $percent = $('<p class="progress"><span></span></p>')
-		                    .appendTo( $li )
+		                    .appendTo($li)
 		                    .find('span');
 		        }
 
@@ -89,4 +82,36 @@ $(function(){
 		    });
 	};
 	uploaderPicture();
+	var isEdit = $('#designer_id').val() === '';
+	var postURL = isEdit ? '/zy/admin/designers/a_add' : '/zy/admin/designers/a_edit';
+	$('.j_designers_form').on('submit', function(e){
+		e.preventDefault();
+		var $form = $(this);
+		var $submitButton = $form.find('.j_submit');
+		if(ZY.button.isLoading($form) || !$form.isValid()){
+			return;
+		}
+		ZY.button.addLoading($submitButton, isEdit? '添加中':'修改中', 'loading');
+		var data;
+
+		isEdit ? data = {
+			name: $('#name').val(),
+			designer_img: $('#designer_img').val(),
+			works_img: $('#works_img').val()
+		} : data = $form.serialize();
+		ZY.post(postURL, data, function(res){
+			ZY.button.removeLoading($submitButton, isEdit? '新增':'编辑');
+			if(res === false){
+				return;
+			}
+			if(res.code == 0){
+				ZY.tips(isEdit? '新增成功！':'编辑成功！', 'success', 1000);
+				setTimeout(function () {
+					location.href = '/zy/admin/designers/all';
+				}, 1500);
+			}else{
+				ZY.showPostError(res.msg);
+			}
+		}, 'json');
+	});
 });
