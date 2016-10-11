@@ -81,8 +81,9 @@ $(function(){
 		    });
 
 		    // 完成上传完了，成功或者失败，先删除进度条。
-		    uploader.on( 'uploadComplete', function( file ) {
+		    uploader.on( 'uploadComplete', function( file, response ) {
 		        $( '#'+file.id ).find('.progress').remove();
+				console.log('complete : '+response);
 		    });
 	};
 	var uploaderImgs = function(){
@@ -162,7 +163,11 @@ $(function(){
 				$( '#'+file.id ).addClass('upload-state-done');
 				console.log(file);
 				console.log(response);
-				alert('upload success!');
+			});
+			uploader.on( 'uploadComplete', function( file, response ) {
+				$( '#'+file.id ).addClass('upload-state-done');
+				console.log(file);
+				console.log(response);
 			});
 		    // 当有文件添加进来时执行，负责view的创建
 		    function addFile( file ) {
@@ -321,6 +326,7 @@ $(function(){
 		        } else if ( state === 'confirm' ) {
 		            stats = uploader.getStats();
 		            if ( stats.uploadFailNum ) {
+
 		                text = '已成功上传' + stats.successNum+ '张照片至XX相册，'+
 		                    stats.uploadFailNum + '张照片上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">忽略</a>'
 		            }
