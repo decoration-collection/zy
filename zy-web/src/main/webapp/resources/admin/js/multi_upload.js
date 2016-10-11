@@ -1,7 +1,10 @@
 $(function(){
 	var $wrap = $('#productionUploader'),
         // 图片容器
-        $queue = $('<ul class="filelist"></ul>').appendTo( $wrap.find('.queueList') ),
+        $imgStr = [],
+        //图片地址字符串
+        // $queue = $('<ul class="filelist"></ul>').appendTo( $wrap.find('.queueList') ),
+        $queue = $('.filelist'),
         // 状态栏，包括进度和控制按钮
         $statusBar = $wrap.find('.statusBar'),
         // 文件总体选择信息。
@@ -60,8 +63,8 @@ $(function(){
         disableGlobalDnd: true,
         chunked: true,
         // server: 'http://webuploader.duapp.com/server/fileupload.php',
-        server: 'http://2betop.net/fileupload.php',
-        fileNumLimit: 300,
+        server: '/zy/admin/multi_upload',
+        fileNumLimit: 4,
         fileSizeLimit: 5 * 1024 * 1024,    // 200 M
         fileSingleSizeLimit: 1 * 1024 * 1024    // 50 M
     });
@@ -69,6 +72,15 @@ $(function(){
     uploader.addButton({
         id: '#filePicker2',
         label: '继续添加'
+    });
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。并储存图片地址到字符串
+    uploader.on( 'uploadSuccess', function( file, response ) {
+        $( '#'+file.id ).addClass('upload-state-done');
+        // console.log(file);
+        // console.log(response);
+        // alert('upload success!');
+        $imgStr.push(response.data.url);
+        console.log($imgStr);
     });
     // 当有文件添加进来时执行，负责view的创建
     function addFile( file ) {
@@ -299,6 +311,7 @@ $(function(){
                 stats = uploader.getStats();
                 if ( stats.successNum ) {
                     alert( '上传成功' );
+                    $('.multi_upload').val($imgStr.join(','));
                 } else {
                     // 没有成功的图片，重设
                     state = 'done';

@@ -4,8 +4,8 @@ $(function(){
 		        // 优化retina, 在retina下这个值是2
 		        ratio = window.devicePixelRatio || 1,
 		        // 缩略图大小
-		        thumbnailWidth = 100 * ratio,
-		        thumbnailHeight = 100 * ratio,
+		        thumbnailWidth = 200 * ratio,
+		        thumbnailHeight = 200 * ratio,
 		        // Web Uploader实例
 		        uploader;
 		    // 初始化Web Uploader
@@ -59,8 +59,9 @@ $(function(){
 		    });
 
 		    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-		    uploader.on( 'uploadSuccess', function( file ) {
+		    uploader.on( 'uploadSuccess', function( file, response) {
 		        $( '#'+file.id ).addClass('upload-state-done');
+		        $('#designer_img').val(response.data.url);
 		    });
 
 		    // 文件上传失败，现实上传出错。
@@ -83,7 +84,7 @@ $(function(){
 	};
 	uploaderPicture();
 	var isEdit = $('#designer_id').val() === '';
-	var postURL = isEdit ? '/zy/admin/designers/a_add' : '/zy/admin/designers/a_edit';
+	var postURL = isEdit ? '/zy/admin/designer/a_add' : '/zy/admin/designer/a_edit';
 	$('.j_designers_form').on('submit', function(e){
 		e.preventDefault();
 		var $form = $(this);
@@ -91,21 +92,25 @@ $(function(){
 		if(ZY.button.isLoading($form) || !$form.isValid()){
 			return;
 		}
-		ZY.button.addLoading($submitButton, isEdit? '添加中':'修改中', 'loading');
+		ZY.button.addLoading($submitButton, isEdit? '添加中':'保存中', 'loading');
 		var data;
 
 		isEdit ? data = {
 			name: $('#name').val(),
 			designer_img: $('#designer_img').val(),
+			working_time: $('#working_time').val(),
+			design_concept: $('#design_concept').val(),
+			honor: $('#honor').val(),
+			works: $('#works').val(),
 			works_img: $('#works_img').val()
 		} : data = $form.serialize();
 		ZY.post(postURL, data, function(res){
-			ZY.button.removeLoading($submitButton, isEdit? '新增':'编辑');
+			ZY.button.removeLoading($submitButton, isEdit? '新增':'保存');
 			if(res === false){
 				return;
 			}
 			if(res.code == 0){
-				ZY.tips(isEdit? '新增成功！':'编辑成功！', 'success', 1000);
+				ZY.tips(isEdit? '新增成功！':'保存成功！', 'success', 1000);
 				setTimeout(function () {
 					location.href = '/zy/admin/designers/all';
 				}, 1500);
