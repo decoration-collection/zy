@@ -22,13 +22,15 @@ public class CommonInterceptor implements HandlerInterceptor {
 	
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
+		String url = request.getRequestURI();
+		System.out.println("url=" + url);
+		
 		HandlerMethod method = (HandlerMethod) handler;
 		//自定义注解，显示注明不需要过滤该url
 		FilterCheckUrl filterCheckUrl = method.getMethodAnnotation(FilterCheckUrl.class);
 		if(null != filterCheckUrl && !filterCheckUrl.value()) {
 			return true;
 		}
-		String url = request.getRequestURI();
 		if(url.contains(FiledsConstant.MANAGER_PREX_URL)) {
 			HttpSession session = request.getSession();
 			if(null == session.getAttribute(FiledsConstant.SESSION_KEY)) {

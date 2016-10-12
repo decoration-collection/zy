@@ -79,18 +79,6 @@ public class UserController {
 		ModelAndView view = new ModelAndView("/admin/crafts/all_crafts",modelMap);
 		return view;
 	}
-	@RequestMapping(value="/admin/designers/add")
-	public ModelAndView designerAdd(ModelMap modelMap) {
-		
-		ModelAndView view = new ModelAndView("/admin/designers/add_designer",modelMap);
-		return view;
-	}
-	@RequestMapping(value="/admin/designers/all")
-	public ModelAndView designerAll(ModelMap modelMap) {
+	
 
-		ModelAndView view = new ModelAndView("/admin/designers/all_designers",modelMap);
-		return view;
-	}
-	
-	
 }

@@ -35,11 +35,11 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="zyzs_case" domainObjectName="ZYCase"></table>
-		<table tableName="zyzs_craft" domainObjectName="ZYCraft"></table>
-		<table tableName="zyzs_designer" domainObjectName="ZYDesigner"></table>
+<!-- 		<table tableName="zyzs_case" domainObjectName="ZYCase"></table>
+		<table tableName="zyzs_craft" domainObjectName="ZYCraft"></table> -->
+		<!-- <table tableName="zyzs_designer" domainObjectName="ZYDesigner"></table> -->
 		<table tableName="zyzs_img" domainObjectName="ZYImg"></table>
-		<table tableName="zyzs_style" domainObjectName="ZYStyle"></table>
+		<!-- <table tableName="zyzs_style" domainObjectName="ZYStyle"></table> -->
 
 	</context>
 

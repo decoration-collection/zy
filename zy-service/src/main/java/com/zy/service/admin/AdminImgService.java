@@ -1,0 +1,41 @@
+package com.zy.service.admin;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.zy.dao.mapper.ZYImgMapper;
+import com.zy.dao.model.ZYImg;
+import com.zy.dao.model.ZYImgExample;
+
+@Service
+public class AdminImgService {
+
+	@Autowired
+	private ZYImgMapper imgMapper;
+	
+	public List<ZYImg> findImgByReferenceId(int referenceId) {
+		ZYImgExample example = new ZYImgExample();
+		example.createCriteria().andReferenceIdEqualTo(referenceId);
+		return imgMapper.selectByExample(example);
+	}
+	
+	public void insertSingleImg(int referenceId,String desc,String path) {
+		ZYImg img = new ZYImg();
+		img.setPath(path);
+		img.setReferenceId(referenceId);
+		Date now = new Date();
+		img.setInsertTime(now);
+		img.setUpdateTime(now);
+		imgMapper.insert(img);
+	}
+	
+	public void delImgByReferenceId(int referenceId) {
+		ZYImgExample example = new ZYImgExample();
+		example.createCriteria().andReferenceIdEqualTo(referenceId);
+		imgMapper.deleteByExample(example);
+	}
+	
+}

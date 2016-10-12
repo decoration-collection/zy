@@ -2,10 +2,10 @@
     <wb-module deploy-name="zy-web">
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="zy-dao-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zy-dao/zy-dao">
+        <dependent-module archiveName="zy-service-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zy-service/zy-service">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="zy-service-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zy-service/zy-service">
+        <dependent-module archiveName="zy-dao-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zy-dao/zy-dao">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="zy-util-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/zy-util/zy-util">
