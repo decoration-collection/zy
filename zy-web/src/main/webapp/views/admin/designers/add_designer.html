@@ -24,14 +24,14 @@
                 </div>
             </div>
             <form class="form-horizontal j_designers_form">
-                <input type="hidden" id="designer_id" name="designer_id" value="${(designerobj.designer_id)!}">
-                <input type="hidden" id="designer_img" name="designer_img" value="${(designerobj.designer_img)!}">
-                <input type="hidden" id="works_img" class="multi_upload" name="designer_img" value="${(designerobj.works_img)!}">
+                <input type="hidden" id="designer_id" name="designer_id" value="${(designersobj.designer_id)!}">
+                <input type="hidden" id="designer_img" name="designer_img" value="${(designersobj.designer_img)!}">
+                <input type="hidden" id="works_img" class="multi_upload" name="designer_img" value="${(designersobj.works_img)!}">
             	<div class="box-body">
                 	<div class="form-group">
                 		<label for="name" class="col-sm-3 control-label">姓名</label>
                 		<div class="col-sm-5">
-                    		<input type="text" name="name" class="form-control" id="name" placeholder="请输入设计师姓名">
+                    		<input type="text" name="name" value="${(designersobj.name)!}" class="form-control" id="name" placeholder="请输入设计师姓名">
                   		</div>
                 	</div>
                 	<div class="form-group">
@@ -39,7 +39,7 @@
                 		<div class="col-sm-5" id="uploader_picture">
                 			<!-- <button class="btn btn-info">上传图片</button> -->
                             <div id="fileList" class="uploader-list">
-                                <img src="${(designerobj.designer_img)!}">
+                                <img src="${(designersobj.designer_img)!}">
                             </div>
                             <div id="filePicker">选择图片</div>
                 		</div>
@@ -49,7 +49,7 @@
                 		<div class="col-sm-5">
                     		<!-- <input type="password" class="form-control" id="inputPassword3" placeholder="Password"> -->
                     		<select name="working_time" class="form-control" id="working_time">
-			                    <option>1年以内</option>
+			                    <option >1年以内</option>
 			                    <option>1-3年</option>
 			                    <option>3-5年</option>
 			                    <option>5-10年</option>
@@ -60,21 +60,29 @@
                 	<div class="form-group">
                 		<label for="design_concept" class="col-sm-3 control-label">设计理念</label>
                 		<div class="col-sm-5">
-                			<textarea name="design_concept" class="form-control" id="design_concept" rows="3" placeholder="Enter ..."></textarea>
+                			<textarea name="design_concept" value="" class="form-control" id="design_concept" rows="3" placeholder="Enter ...">${(designersobj.design_concept)!}</textarea>
                 		</div>
                 	</div>
                 	<div class="form-group">
                 		<label for="honor" class="col-sm-3 control-label">获得荣誉</label>
                 		<div class="col-sm-5">
-                			<textarea name="honor" class="form-control" id="honor" rows="3" placeholder="Enter ..."></textarea>
+                			<textarea name="honor" value="" class="form-control" id="honor" rows="3" placeholder="Enter ...">${(designersobj.honor)!}</textarea>
                 		</div>
                 	</div>
-                	<div class="form-group">
-                		<label for="works" class="col-sm-3 control-label">代表作品</label>
-                		<div class="col-sm-5">
-                			<textarea name="works" class="form-control" id="works" rows="3" placeholder="Enter ..."></textarea>
-                		</div>
-                	</div>
+                    <div class="form-group">
+                        <label for="works" class="col-sm-3 control-label">代表作品</label>
+                        <div class="col-sm-5">
+                            <textarea name="works" value="" class="form-control" id="works" rows="3" placeholder="Enter ...">${(designersobj.works)!}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="works" class="col-sm-3 control-label">已上传展示作品</label>
+                        <div class="col-sm-5">
+                        <#list designersobj as item>
+                            ${item.shows}
+                        </#list>
+                        </div>
+                    </div>
                 	<div class="form-group">
                 		<label for="works_show" class="col-sm-3 control-label">作品展示</label>
                 		<div class="col-sm-8">
@@ -85,11 +93,6 @@
                                         <div id="productionPicker"></div>
                                         <p>或将照片拖到这里，最多可展示4张作品图</p>
                                     </div>
-                                    <ul class="filelist">
-                                    <#if isEdit == true>
-                                        
-                                    </#if>    
-                                    </ul>
                                 </div>
                                 <div class="statusBar" style="display:none;">
                                     <div class="progress">

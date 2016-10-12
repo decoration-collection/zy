@@ -3,8 +3,8 @@ $(function(){
         // 图片容器
         $imgStr = [],
         //图片地址字符串
-        // $queue = $('<ul class="filelist"></ul>').appendTo( $wrap.find('.queueList') ),
-        $queue = $('.filelist'),
+        $queue = $('<ul class="filelist"></ul>').appendTo( $wrap.find('.queueList') ),
+        // $queue = $('.filelist'),
         // 状态栏，包括进度和控制按钮
         $statusBar = $wrap.find('.statusBar'),
         // 文件总体选择信息。

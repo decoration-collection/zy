@@ -84,7 +84,7 @@ $(function(){
 	};
 	uploaderPicture();
 	var isEdit = $('#designer_id').val() === '';
-	var postURL = isEdit ? '/zy/admin/designer/a_add' : '/zy/admin/designer/a_edit';
+	var postURL = isEdit ? '/zy/admin/designers/a_add' : '/zy/admin/designers/a_edit';
 	$('.j_designers_form').on('submit', function(e){
 		e.preventDefault();
 		var $form = $(this);
