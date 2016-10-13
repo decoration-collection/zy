@@ -102,7 +102,7 @@ $(function(){
 			design_concept: $('#design_concept').val(),
 			honor: $('#honor').val(),
 			works: $('#works').val(),
-			works_img: $('#works_img').val()
+			works_show: $('#works_show').val()
 		} : data = $form.serialize();
 		ZY.post(postURL, data, function(res){
 			ZY.button.removeLoading($submitButton, isEdit? '新增':'保存');
@@ -118,5 +118,14 @@ $(function(){
 				ZY.showPostError(res.msg);
 			}
 		}, 'json');
+	});
+	$('.delete-work').on('click',function(){
+		var data = {
+			designer_id: $('#designer_id').val(),
+			works_path: $(this).siblings('img').attr('src')
+		};
+		ZY.post('/zy/admin/designers/del_works',data,function(res){
+			console.log(res);
+		});
 	});
 });

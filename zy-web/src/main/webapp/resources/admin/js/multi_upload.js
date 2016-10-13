@@ -64,7 +64,7 @@ $(function(){
         chunked: true,
         // server: 'http://webuploader.duapp.com/server/fileupload.php',
         server: '/zy/admin/multi_upload',
-        fileNumLimit: 4,
+        fileNumLimit: 300,
         fileSizeLimit: 5 * 1024 * 1024,    // 200 M
         fileSingleSizeLimit: 1 * 1024 * 1024    // 50 M
     });
@@ -77,7 +77,7 @@ $(function(){
     uploader.on( 'uploadSuccess', function( file, response ) {
         $( '#'+file.id ).addClass('upload-state-done');
         // console.log(file);
-        // console.log(response);
+        console.log(response);
         // alert('upload success!');
         $imgStr.push(response.data.url);
         console.log($imgStr);

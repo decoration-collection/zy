@@ -1,7 +1,32 @@
-.form-horizontal {
-	.finish-works-list {
+.uploader-list {
+    width: 290px;
+    /*height: 428px;*/
+    overflow: hidden;
+    margin-bottom: 10px;
+    img {
+		width: 100%;
+	}
+}
+.finish-works-list {
+	.show-item {
+		display: inline-block;
+		width: 190px;
+		height: 120px;
+		overflow: hidden;
+		position: relative;
 		img {
-			display: inline-block;
+			width: 100%;
+		}
+		.delete-work {
+		    position: absolute;
+		    top: 10px;
+		    right: 10px;
+		    font-size: 24px;
+		    cursor: pointer;
+		    color: #fff;
+		    &:hover {
+		    	color: #00b7ee;
+		    }
 		}
 	}
 }

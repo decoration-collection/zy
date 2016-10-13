@@ -5,6 +5,7 @@
 <@override name="t_design_add">active</@override>
 <@override name="content">
 <div class="content-wrapper">
+    <#assign finishWorks=""/>
 	<section class="content-header">
 		<h1><#if isEdit == true>编辑设计师</#if><#if isEdit == false>新增设计师</#if></h1>
 		<!-- <ol class="breadcrumb">
@@ -26,7 +27,7 @@
             <form class="form-horizontal j_designers_form">
                 <input type="hidden" id="designer_id" name="designer_id" value="${(designersobj.designer_id)!}">
                 <input type="hidden" id="designer_img" name="designer_img" value="${(designersobj.designer_img)!}">
-                <input type="hidden" id="works_img" class="multi_upload" name="designer_img" value="${(designersobj.works_img)!}">
+                <input type="hidden" id="works_show" data-finish-uploader="" class="multi_upload" name="designer_show" value="">
             	<div class="box-body">
                 	<div class="form-group">
                 		<label for="name" class="col-sm-3 control-label">姓名</label>
@@ -39,9 +40,12 @@
                 		<div class="col-sm-5" id="uploader_picture">
                 			<!-- <button class="btn btn-info">上传图片</button> -->
                             <div id="fileList" class="uploader-list">
+                            <#if isEdit == true>
                                 <img src="${(designersobj.designer_img)!}">
+                            </#if>
                             </div>
                             <div id="filePicker">选择图片</div>
+                            <div class="img-size">推荐上传大小：290 x 400CM</div>
                 		</div>
                 	</div>
                 	<div class="form-group">
@@ -75,23 +79,31 @@
                             <textarea name="works" value="" class="form-control" id="works" rows="3" placeholder="Enter ...">${(designersobj.works)!}</textarea>
                         </div>
                     </div>
+                    <#if isEdit == true>
+                    <!-- ${designersobj} -->
                     <div class="form-group">
                         <label for="works" class="col-sm-3 control-label">已上传展示作品</label>
-                        <div class="col-sm-5">
-                        <#list designersobj as item>
-                            ${item.shows}
+                        <div class="col-sm-9 finish-works-list">
+                        <#list designersobj.shows as item>
+                            <div class="show-item">
+                                <img src="${item}">
+                                <span title="删除" class="fa fa-trash-o delete-work"></span>
+                                <#assign finishWorks=finishWorks+item/>
+                            </div>
                         </#list>
+                        ${finishWorks}
                         </div>
                     </div>
+                    </#if>
                 	<div class="form-group">
-                		<label for="works_show" class="col-sm-3 control-label">作品展示</label>
+                		<label for="works_show" class="col-sm-3 control-label">上传展示作品</label>
                 		<div class="col-sm-8">
                 			<!-- <div class="form-control"></div> -->
                             <div id="productionUploader" class="production-wrapper">
                                 <div class="queueList">
                                     <div id="dndArea" class="placeholder">
                                         <div id="productionPicker"></div>
-                                        <p>或将照片拖到这里，最多可展示4张作品图</p>
+                                        <p>推荐上传大小：190 X 120 CM，最多可展示4张作品图</p>
                                     </div>
                                 </div>
                                 <div class="statusBar" style="display:none;">
