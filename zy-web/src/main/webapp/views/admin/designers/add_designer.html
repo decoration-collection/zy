@@ -5,7 +5,7 @@
 <@override name="t_design_add">active</@override>
 <@override name="content">
 <div class="content-wrapper">
-    <#assign finishWorks=""/>
+<#assign finishWorks=""/>
 	<section class="content-header">
 		<h1><#if isEdit == true>编辑设计师</#if><#if isEdit == false>新增设计师</#if></h1>
 		<!-- <ol class="breadcrumb">
@@ -27,7 +27,7 @@
             <form class="form-horizontal j_designers_form">
                 <input type="hidden" id="designer_id" name="designer_id" value="${(designersobj.designer_id)!}">
                 <input type="hidden" id="designer_img" name="designer_img" value="${(designersobj.designer_img)!}">
-                <input type="hidden" id="works_show" data-finish-uploader="" class="multi_upload" name="designer_show" value="">
+               <!--  <input type="hidden" id="works_show" data-finish-uploader="" class="multi_upload" name="designer_show" value=""> -->
             	<div class="box-body">
                 	<div class="form-group">
                 		<label for="name" class="col-sm-3 control-label">姓名</label>
@@ -39,9 +39,10 @@
                 		<label for="" class="col-sm-3 control-label">照片</label>
                 		<div class="col-sm-5" id="uploader_picture">
                 			<!-- <button class="btn btn-info">上传图片</button> -->
-                            <div id="fileList" class="uploader-list">
+                            <div id="fileList" class="uploader-list delete-box">
                             <#if isEdit == true>
                                 <img src="${(designersobj.designer_img)!}">
+                                <!-- <span title="删除" class="fa fa-trash-o delete-work"></span> -->
                             </#if>
                             </div>
                             <div id="filePicker">选择图片</div>
@@ -85,16 +86,17 @@
                         <label for="works" class="col-sm-3 control-label">已上传展示作品</label>
                         <div class="col-sm-9 finish-works-list">
                         <#list designersobj.shows as item>
-                            <div class="show-item">
+                            <div class="show-item delete-box">
                                 <img src="${item}">
                                 <span title="删除" class="fa fa-trash-o delete-work"></span>
-                                <#assign finishWorks=finishWorks+item/>
+                                <#assign finishWorks=finishWorks+","+item/>
                             </div>
                         </#list>
                         ${finishWorks}
-                        </div>
                     </div>
                     </#if>
+                     <input type="hidden" id="works_show" data-finish-uploader="${finishWorks}" class="multi_upload" name="works_show" value="">
+                    </div>
                 	<div class="form-group">
                 		<label for="works_show" class="col-sm-3 control-label">上传展示作品</label>
                 		<div class="col-sm-8">
@@ -123,7 +125,7 @@
                     <label for="" class="col-sm-3 control-label"></label>
 	            	<!-- <button type="submit" class="btn btn-default">Cancel</button> -->
                     <div class="col-sm-5">
-                        <button type="submit" class="btn btn-info j_submit"><#if isEdit == true>保存</#if><#if isEdit == false>新增</#if></button>
+                        <button type="submit" class="btn btn-info j_submit"><#if isEdit == true>保存</#if><#if isEdit == false>新增</#if></button>${isEdit?string}
                     </div>
 	            </div>
             </form>

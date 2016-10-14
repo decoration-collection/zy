@@ -29,6 +29,7 @@ $(function(){
 
 		    // 当有文件添加进来的时候
 		    uploader.on('fileQueued', function(file) {
+		    	$('#fileList').empty();
 		        var $img = $('<img>');
 
 		        $list.append($img);
@@ -83,8 +84,20 @@ $(function(){
 		    });
 	};
 	uploaderPicture();
-	var isEdit = $('#designer_id').val() === '';
-	var postURL = isEdit ? '/zy/admin/designers/a_add' : '/zy/admin/designers/a_edit';
+	var isEdit = $('#designer_id').val() !== '';
+	var postURL = isEdit ? '/zy/admin/designers/a_edit' : '/zy/admin/designers/a_add';
+	var finishUpload = $('#works_show').data('finish-uploader');
+	//删除已上传图片,更新列表中的已上传图片列表字符串
+	$('.delete-work').on('click',function(){
+		var data = {
+			designer_id: $('#designer_id').val(),
+			works_path: $(this).siblings('img').attr('src')
+		};
+		ZY.post('/zy/admin/designers/del_works',data,function(res){
+			console.log(res);
+			finishUpload = res.data.works.join(',');
+		});
+	});
 	$('.j_designers_form').on('submit', function(e){
 		e.preventDefault();
 		var $form = $(this);
@@ -92,7 +105,7 @@ $(function(){
 		if(ZY.button.isLoading($form) || !$form.isValid()){
 			return;
 		}
-		ZY.button.addLoading($submitButton, isEdit? '添加中':'保存中', 'loading');
+		ZY.button.addLoading($submitButton, isEdit?'保存中' :'添加中', 'loading');
 		var data;
 
 		isEdit ? data = {
@@ -102,15 +115,15 @@ $(function(){
 			design_concept: $('#design_concept').val(),
 			honor: $('#honor').val(),
 			works: $('#works').val(),
-			works_show: $('#works_show').val()
+			works_show: $('#works_show').val() + finishUpload
 		} : data = $form.serialize();
 		ZY.post(postURL, data, function(res){
-			ZY.button.removeLoading($submitButton, isEdit? '新增':'保存');
+			ZY.button.removeLoading($submitButton, isEdit? '保存':'新增');
 			if(res === false){
 				return;
 			}
 			if(res.code == 0){
-				ZY.tips(isEdit? '新增成功！':'保存成功！', 'success', 1000);
+				ZY.tips(isEdit? '保存成功！':'新增成功！', 'success', 1000);
 				setTimeout(function () {
 					location.href = '/zy/admin/designers/all';
 				}, 1500);
@@ -118,14 +131,5 @@ $(function(){
 				ZY.showPostError(res.msg);
 			}
 		}, 'json');
-	});
-	$('.delete-work').on('click',function(){
-		var data = {
-			designer_id: $('#designer_id').val(),
-			works_path: $(this).siblings('img').attr('src')
-		};
-		ZY.post('/zy/admin/designers/del_works',data,function(res){
-			console.log(res);
-		});
 	});
 });
