@@ -28,32 +28,40 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">名称</label>
                         <div class="col-sm-5">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="请输入名称" required>
+                            <input type="text" name="name" class="form-control" id="name" value="${(caseobj.name)!}" placeholder="请输入名称" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="desc" class="col-sm-3 control-label">描述</label>
                         <div class="col-sm-5">
-                            <input type="text" name="desc" class="form-control" id="desc" placeholder="请输入描述" required>
+                            <input type="text" name="desc" class="form-control" id="desc" value="${(caseobj.desc)!}" placeholder="请输入描述" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="build" class="col-sm-3 control-label">楼盘</label>
                         <div class="col-sm-5">
-                            <input type="text" name="build" class="form-control" id="build" placeholder="请输入楼盘名称" required>
+                            <input type="text" name="build" class="form-control" id="build" value="${(caseobj.build)!}" placeholder="请输入楼盘名称" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="style_id" class="col-sm-3 control-label">风格</label>
                         <div class="col-sm-5">
                             <select name="style_id" id="style_id">
+
                                 <#list stylelist as item>
-                                    <option value="${item.style_id}">${item.name}</option>
+                                    <#if isEdit == true>
+                                        <#if item.style_id == caseobj.styleForm.style_id>
+                                            <option value="${item.style_id}" selected>${item.name}</option>
+                                        </#if>
+                                        <#if item.style_id != caseobj.styleForm.style_id>
+                                            <option value="${item.style_id}">${item.name}</option>
+                                        </#if>
+                                    </#if>
+                                    <#if isEdit == false>
+                                        <option value="${item.style_id}">${item.name}</option>
+                                    </#if>
                                 </#list>
-                                <!--<option value="hello1" selected>what</option>-->
-                                <!--<option value="hello2">ssss</option>-->
                             </select>
-                            <!--<input type="text" name="style_id" class="form-control" id="style_id" placeholder="请输入名称">-->
                         </div>
                     </div>
                     <div class="form-group">
@@ -61,29 +69,36 @@
                         <div class="col-sm-5">
                             <select name="designer_id" id="designer_id">
                                 <#list designerlist as item>
-                                    <option value="${item.designer_id}">${item.name}</option>
+                                    <#if isEdit == true>
+                                        <#if item.designer_id == caseobj.designerForm.designer_id>
+                                            <option value="${item.designer_id}" selected>${item.name}</option>
+                                        </#if>
+                                        <#if item.designer_id != caseobj.designerForm.designer_id>
+                                            <option value="${item.designer_id}">${item.name}</option>
+                                        </#if>
+                                    </#if>
+                                    <#if isEdit == false>
+                                        <option value="${item.designer_id}">${item.name}</option>
+                                    </#if>
                                 </#list>
                             </select>
-                            <!--<input type="text" name="style_id" class="form-control" id="style_id" placeholder="请输入名称">-->
                         </div>
                     </div>
                     <#if isEdit == true>
-                        <!-- ${designersobj} -->
                         <div class="form-group">
                             <label for="works" class="col-sm-3 control-label">作品展示</label>
                             <div class="col-sm-9 finish-works-list">
-                                <#list designersobj.shows as item>
+                                <#list caseobj.caseImgs as item>
                                     <div class="show-item delete-box">
                                         <img src="${item}">
                                         <span title="删除" class="fa fa-trash-o delete-work"></span>
                                         <#assign finishWorks=finishWorks+","+item/>
                                     </div>
                                 </#list>
-                                ${finishWorks}
                             </div>
                         </div>
                     </#if>
-                    <input type="hidden" id="works_show" data-finish-uploader="${finishWorks}" class="multi_upload" name="aimgs" value="">
+                    <input type="hidden" id="works_show" data-finish-uploader="${finishWorks}" class="multi_upload" name="aimgs" value="${finishWorks}">
                     <div class="form-group">
                         <label for="works_show" class="col-sm-3 control-label"><#if isEdit == false>作品展示</#if></label>
                         <div class="col-sm-8">

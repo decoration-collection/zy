@@ -312,7 +312,8 @@ $(function(){
                     stats = uploader.getStats();
                     if ( stats.successNum ) {
                         // alert( '上传成功' );
-                        $('.multi_upload').val($imgStr.join(','));
+                        var $uploader = $('.multi_upload');
+                        $uploader.val($imgStr.join(',')+ "," + $uploader.val());
                     } else {
                         // 没有成功的图片，重设
                         state = 'done';

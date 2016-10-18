@@ -7,13 +7,15 @@ $(function(){
 	var finishUpload = $('#works_show').data('finish-uploader');
 	// 删除已上传图片,更新列表中的已上传图片列表字符串
 	$('.delete-work').on('click',function(){
+		var thiz = this;
 		var data = {
 			rid: $('#case_id').val(),
 			img_path: $(this).siblings('img').attr('src')
 		};
 		ZY.post('/zy/admin/single_del',data,function(res){
 			console.log(res);
-			finishUpload = res.data.works.join(',');
+			$(thiz).parent().remove();
+			$('#works_show').val(res.data.imgs.join(','));
 		});
 	});
 	$('.j_case_form').on('submit', function(e){
@@ -32,7 +34,7 @@ $(function(){
 			build: $('#build').val(),
 			style_id: $('#style_id').val(),
 			designer_id: $('#designer_id').val(),
-			aimgs: $('#works_show').val() + finishUpload
+			aimgs: $('#works_show').val()
 		};
 		ZY.post(postURL, data, function(res){
 			ZY.button.removeLoading($submitButton, isEdit? '保存':'新增');
