@@ -84,14 +84,17 @@ $(function(){
 		    });
 	};
 	uploaderPicture();
+
+	ZY.initMultiUpload(4);
+
 	var isEdit = $('#designer_id').val() !== '';
 	var postURL = isEdit ? '/zy/admin/designers/a_edit' : '/zy/admin/designers/a_add';
 	var finishUpload = $('#works_show').data('finish-uploader');
 	//删除已上传图片,更新列表中的已上传图片列表字符串
 	$('.delete-work').on('click',function(){
 		var data = {
-			designer_id: $('#designer_id').val(),
-			works_path: $(this).siblings('img').attr('src')
+			rid: $('#designer_id').val(),
+			img_path: $(this).siblings('img').attr('src')
 		};
 		ZY.post('/zy/admin/designers/del_works',data,function(res){
 			console.log(res);
