@@ -89,16 +89,17 @@ $(function(){
 
 	var isEdit = $('#designer_id').val() !== '';
 	var postURL = isEdit ? '/zy/admin/designers/a_edit' : '/zy/admin/designers/a_add';
-	var finishUpload = $('#works_show').data('finish-uploader');
 	//删除已上传图片,更新列表中的已上传图片列表字符串
 	$('.delete-work').on('click',function(){
+		var thiz = $(this);
 		var data = {
 			rid: $('#designer_id').val(),
-			img_path: $(this).siblings('img').attr('src')
+			img_path: thiz.siblings('img').attr('src')
 		};
-		ZY.post('/zy/admin/designers/del_works',data,function(res){
+		ZY.post('/zy/admin/single_del',data,function(res){
 			console.log(res);
-			finishUpload = res.data.works.join(',');
+			$(thiz).parent().remove();
+			$('#works_show').val(res.data.imgs.join(','));
 		});
 	});
 	$('.j_designers_form').on('submit', function(e){
@@ -111,15 +112,15 @@ $(function(){
 		ZY.button.addLoading($submitButton, isEdit?'保存中' :'添加中', 'loading');
 		var data;
 
-		isEdit ? data = {
+		isEdit ? data = $form.serialize() : data = {
 			name: $('#name').val(),
 			designer_img: $('#designer_img').val(),
 			working_time: $('#working_time').val(),
 			design_concept: $('#design_concept').val(),
 			honor: $('#honor').val(),
 			works: $('#works').val(),
-			works_show: $('#works_show').val() + finishUpload
-		} : data = $form.serialize();
+			works_show: $('#works_show').val()
+		};
 		ZY.post(postURL, data, function(res){
 			ZY.button.removeLoading($submitButton, isEdit? '保存':'新增');
 			if(res === false){
