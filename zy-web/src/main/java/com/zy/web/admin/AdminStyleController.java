@@ -35,34 +35,17 @@ public class AdminStyleController {
 	}
 	@RequestMapping(value="/all")
 	public ModelAndView styleAll(ModelMap modelMap) {
-		List<ZYStyle> list = adminStyleService.findAllStyle();
-		List<StyleForm> result = new ArrayList<StyleForm>();
-		for(ZYStyle zyStyle : list) {
-			StyleForm form = new StyleForm();
-			form.setStyle_id(zyStyle.getStyleId());
-			form.setName(zyStyle.getType());
-			form.setDesc(zyStyle.getDes());
-			form.setImg_path(zyStyle.getImgPath());
-			
-			result.add(form);
-		}
-		
-		modelMap.addAttribute("stylelist", result);
+		List<StyleForm> list = adminStyleService.findAllStyle();
+		modelMap.addAttribute("stylelist", list);
 		ModelAndView view = new ModelAndView("/admin/style/all_style",modelMap);
 		return view;
 	}
 	
 	@RequestMapping(value="/edit")
 	public ModelAndView styleEdit(String style_id,ModelMap modelMap) {
-		ZYStyle zyStyle = adminStyleService.findStyleById(Integer.valueOf(style_id));
-		StyleForm form = new StyleForm();
-		form.setStyle_id(zyStyle.getStyleId());
-		form.setName(zyStyle.getType());
-		form.setDesc(zyStyle.getDes());
-		form.setImg_path(zyStyle.getImgPath());
-		
+		StyleForm styleForm = adminStyleService.findStyleById(Integer.valueOf(style_id));
 		modelMap.addAttribute("isEdit", true);
-		modelMap.addAttribute("styleobj", form);
+		modelMap.addAttribute("styleobj", styleForm);
 		ModelAndView view = new ModelAndView("/admin/style/add_style",modelMap);
 		return view;
 	}
@@ -71,18 +54,8 @@ public class AdminStyleController {
 	@RequestMapping(value="/a_all")
 	public Object findAllStyle() {
 		try {
-			List<ZYStyle> list = adminStyleService.findAllStyle();
-			List<StyleForm> result = new ArrayList<StyleForm>();
-			for(ZYStyle zyStyle : list) {
-				StyleForm form = new StyleForm();
-				form.setStyle_id(zyStyle.getStyleId());
-				form.setName(zyStyle.getType());
-				form.setDesc(zyStyle.getDes());
-				form.setImg_path(zyStyle.getImgPath());
-				
-				result.add(form);
-			}
-			Map<String,String> dataMap = new HashMap<String,String>();
+			List<StyleForm> result = adminStyleService.findAllStyle();
+			Map<String,Object> dataMap = new HashMap<String,Object>();
 			dataMap.put("stylelist", new Gson().toJson(result));
 			return ResultMap.buildMap(0, "success", dataMap);
 		} catch (Exception e) {

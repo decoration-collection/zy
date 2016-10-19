@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.zy.dao.mapper.ZYDesignerMapper;
 import com.zy.dao.model.ZYDesigner;
 import com.zy.dao.model.ZYDesignerExample;
-import com.zy.dao.model.ZYImg;
 import com.zy.service.admin.form.DesignerForm;
 
 @Service
@@ -43,7 +42,9 @@ public class AdminDesignerService {
 		if(null != workShows && !"".equals(workShows)) {
 			String[] workShowArray = workShows.split(",");
 			for(String work_show : workShowArray) {
-				adminImgService.insertSingleImg(refrenceId, "desinger", work_show);
+				if(null != work_show && !"".equals(work_show)) {
+					adminImgService.insertSingleImg(refrenceId, "desinger", work_show);
+				}
 			}
 		}
 		
@@ -70,7 +71,9 @@ public class AdminDesignerService {
 		if(null != workShows && !"".equals(workShows)) {
 			String[] workShowArray = workShows.split(",");
 			for(String work_show : workShowArray) {
-				adminImgService.insertSingleImg(designerId, "desinger", work_show);
+				if(null != work_show && !"".equals(work_show)) {
+					adminImgService.insertSingleImg(designerId, "desinger", work_show);
+				}
 			}
 		}
 		
@@ -93,12 +96,7 @@ public class AdminDesignerService {
 			form.setWorking_time(zyDesigner.getWorktime());
 			form.setWorks(zyDesigner.getWorks());
 			
-			List<ZYImg> imgList = adminImgService.findImgByReferenceId(zyDesigner.getDesignerId());
-			if(null != imgList && imgList.size() > 0) {
-				for(ZYImg img : imgList) {
-					form.getShows().add(img.getPath());
-				}
-			}
+			form.getShows().addAll(adminImgService.findImgByReferenceId(zyDesigner.getDesignerId()));
 			
 			result.add(form);
 		}
@@ -117,12 +115,8 @@ public class AdminDesignerService {
 		form.setWorking_time(zyDesigner.getWorktime());
 		form.setWorks(zyDesigner.getWorks());
 		
-		List<ZYImg> imgList = adminImgService.findImgByReferenceId(designerId);
-		if(null != imgList && imgList.size() > 0) {
-			for(ZYImg img : imgList) {
-				form.getShows().add(img.getPath());
-			}
-		}
+		form.getShows().addAll(adminImgService.findImgByReferenceId(designerId));
+
 		return form;
 	}
 	

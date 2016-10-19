@@ -93,7 +93,7 @@ public class UploadController {
 					logger.info("耗时：" + (finaltime - pre) + "毫秒");
 				}
 			}
-			Map<String, String> urlMap = new HashMap<String, String>();
+			Map<String, Object> urlMap = new HashMap<String, Object>();
 			urlMap.put("url", resUrlBuffer.toString());
 
 			return ResultMap.buildMap(0, "success", urlMap);
@@ -149,7 +149,7 @@ public class UploadController {
 							File localFile = new File(path);
 							file.transferTo(localFile);
 							resUrlBuffer.append(FILE_BASE_PATH)
-									.append(filePath).append(fileName);
+									.append(filePath).append(fileName).append(",");
 						}
 					}
 					// 记录上传该文件后的时间
@@ -158,10 +158,11 @@ public class UploadController {
 				}
 
 			}
-			Map<String, String> urlMap = new HashMap<String, String>();
+			Map<String, Object> urlMap = new HashMap<String, Object>();
 			int urlLength = resUrlBuffer.toString().length();
 			urlMap.put("url", resUrlBuffer.toString().substring(0, urlLength - 1));
 
+			logger.info("urlMap=" + urlMap);
 			return ResultMap.buildMap(0, "success", urlMap);
 		} catch (Exception e) {
 			logger.error("上传文件异常", e);

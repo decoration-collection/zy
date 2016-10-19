@@ -15,7 +15,7 @@ public class ResultMap {
 		return resultMap;
 	}*/
 	
-	public static Map<String,Object> buildMap(int code,String msg,Map<String,String> dataMap) {
+	public static Map<String,Object> buildMap(int code,String msg,Map<String,Object> dataMap) {
 		Map<String,Object> resultMap = new HashMap<String,Object>();
 		resultMap.put("code", code);
 		resultMap.put("msg", msg);

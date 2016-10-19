@@ -1,5 +1,6 @@
 package com.zy.service.admin;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,14 +42,32 @@ public class AdminStyleService {
 		styleMapper.updateByPrimaryKey(style);
 	}
 	
-	public List<ZYStyle> findAllStyle() {
+	public List<StyleForm> findAllStyle() {
 		ZYStyleExample exmaple = new ZYStyleExample();
 		exmaple.setOrderByClause(" style_id asc");
-		return styleMapper.selectByExample(exmaple);
+		List<ZYStyle> list =  styleMapper.selectByExample(exmaple);
+		
+		List<StyleForm> result = new ArrayList<StyleForm>();
+		for(ZYStyle zyStyle : list) {
+			StyleForm form = new StyleForm();
+			form.setStyle_id(zyStyle.getStyleId());
+			form.setName(zyStyle.getType());
+			form.setDesc(zyStyle.getDes());
+			form.setImg_path(zyStyle.getImgPath());
+			
+			result.add(form);
+		}
+		return result;
 	}
 	
-	public ZYStyle findStyleById(int styleId) {
-		return styleMapper.selectByPrimaryKey(styleId);
+	public StyleForm findStyleById(int styleId) {
+		ZYStyle zyStyle = styleMapper.selectByPrimaryKey(styleId);
+		StyleForm form = new StyleForm();
+		form.setStyle_id(zyStyle.getStyleId());
+		form.setName(zyStyle.getType());
+		form.setDesc(zyStyle.getDes());
+		form.setImg_path(zyStyle.getImgPath());
+		return form;
 	}
 	
 	public void delStyleById(int styleId) {
