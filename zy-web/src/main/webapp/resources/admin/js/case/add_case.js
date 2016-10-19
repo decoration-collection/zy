@@ -1,10 +1,24 @@
 $(function(){
 
-	ZY.initMultiUpload(8);
-
 	var isEdit = $('#case_id').val() !== '';
 	var postURL = isEdit ? '/zy/admin/case/a_edit' : '/zy/admin/case/a_add';
-	var finishUpload = $('#works_show').data('finish-uploader');
+
+    var initFunc = function () {
+        var exist = $('.finish-works-list .show-item').length;
+        isEdit ? $('.limit').html(8 - parseInt(exist)) : '';
+        ZY.initMultiUpload(isEdit ? 8 - parseInt(exist) : 8, function (arr, uploader) {
+            var listImg = [];
+            for (var i = 0, size = arr.length; i < size; i++) {
+                listImg.push('<div class="show-item delete-box"><img src="' + arr[i] + '"><span title="删除" class="fa fa-trash-o delete-work"></span></div>');
+            }
+            $('.finish-works-list').append(listImg.join(''));
+            ZY.initFunc();
+        });
+    };
+
+    ZY.initFunc = initFunc;
+    ZY.initFunc();
+
 	// 删除已上传图片,更新列表中的已上传图片列表字符串
 	$('.delete-work').on('click',function(){
 		var thiz = this;

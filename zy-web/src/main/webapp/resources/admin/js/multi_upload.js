@@ -1,5 +1,5 @@
 $(function(){
-	ZY.initMultiUpload = function (limit) {
+	ZY.initMultiUpload = function (limit, callback) {
         var $wrap = $('#productionUploader'),
             // 图片容器
             $imgStr = [],
@@ -314,6 +314,9 @@ $(function(){
                         // alert( '上传成功' );
                         var $uploader = $('.multi_upload');
                         $uploader.val($imgStr.join(',')+ "," + $uploader.val());
+                        if (callback && $.isFunction(callback)) {
+                            callback($imgStr, uploader);
+                        }
                     } else {
                         // 没有成功的图片，重设
                         state = 'done';
@@ -380,7 +383,10 @@ $(function(){
         });
 
         uploader.onError = function( code ) {
-            alert( 'Eroor: ' + code );
+            if (code === 'Q_EXCEED_NUM_LIMIT') {
+                ZY.tips('最多上传' + limit + '张图片！', 'warning', 1500);
+            }
+            // alert( 'Eroor: ' + code );
         };
 
         $upload.on('click', function() {
