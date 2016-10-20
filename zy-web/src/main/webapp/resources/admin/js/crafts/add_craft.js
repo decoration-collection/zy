@@ -1,9 +1,7 @@
 $(function(){
 	var isEdit = $('#craft_id').val() !== '';
 	var postURL = isEdit ? '/zy/admin/craft/a_edit' : '/zy/admin/craft/a_add';
-	ZY.initMultiUpload(100,function(){
-
-	});
+	var allImgObj = [];
 	//删除已上传图片,更新列表中的已上传图片列表字符串
 	$('.delete-work').on('click',function(){
 		var thiz = $(this);
@@ -15,8 +13,55 @@ $(function(){
 			console.log(res);
 			$(thiz).parent().remove();
 			$('#craft_show').val(res.data.imgs.join(','));
+			allImgObj.push(???);
 		});
 	});
+	ZY.initMultiUpload(100,function(imgArray,uploader,imgObj){
+		console.log(res);
+		// sort(imgObj);
+		allImgObj.push(imgObj);
+	});
+	function sort(imgObj){
+		var imgArrayL = [],imgArrayM = [],imgArrayAll = [];
+		var lengthL, lengthM,sum = 0,l = 0;
+		// if(isEdit){imgObj.push(????)}
+		for(var i;i<imgObj.length;i++){
+			var item = imgObj[i];
+			if(item.size === 'm'){
+				imgArrayM.push(item.url);
+			}else {
+				imgArrayL.push(item.url);
+			}
+		}
+		lengthL = imgArrayL.length;
+		lengthM = imgArrayM.length;
+		if(lengthM > lengthL){
+			for(var m;m<lengthM;m++){
+				sum++;
+				if(sum > 3 && l < lengthL){
+					imgArrayAll.push(imgArrayL[l]);
+					l++;
+					sum = 0;
+				}
+				imgArrayAll.push(imgArrayM[m]);
+			}
+		}else {
+			for(var m;m<lengthM;m++){
+				sum++;
+				if(sum > 3 && l < lengthL){
+					imgArrayAll.push(imgArrayL[l]);
+					l++;
+					sum = 0;
+				}
+				imgArrayAll.push(imgArrayM[m]);
+			}
+			for(l;l<lengthL;l++){
+				imgArrayAll.push(imgArrayL[l]);
+			}
+		}
+		$('#craft_show').val(imgArrayAll.join(','));
+	}
+	sort(allImgObj);
 	$('.j_craft_form').on('submit', function(e){
 		e.preventDefault();
 		var $form = $(this);

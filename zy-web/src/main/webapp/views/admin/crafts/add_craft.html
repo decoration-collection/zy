@@ -30,14 +30,14 @@
             <input type="hidden" name="craft_show" id="craft_show" class="multi_upload" value="${(craftobj.craft_show)!}">
             	<div class="box-body">
                     <div class="form-group">
-                        <label for="craft_name" class="col-sm-2 control-label">所属分类</label>
+                        <label for="craft_name" class="col-sm-2 control-label">所属分类：</label>
                         <div class="col-sm-5">
                             <input type="text" name="craft_name" class="form-control" id="craft_name" value="${(craftobj.craft_name)!}">
                         </div>
                     </div>
                     <#if isEdit == true>
                         <div class="form-group">
-                            <label for="works" class="col-sm-3 control-label">作品展示</label>
+                            <label for="works" class="col-sm-2 control-label">已上传工艺标准图片：</label>
                             <div class="col-sm-9 finish-works-list">
                                 <#list craftobj.craft_img as item>
                                     <div class="show-item delete-box">
@@ -50,14 +50,14 @@
                         </div>
                     </#if>
                 	<div class="form-group">
-                		<label for="" class="col-sm-1 control-label"></label>
-                		<div class="col-sm-10">
+                		<label for="" class="col-sm-2 control-label">新增工艺标准图片：</label>
+                		<div class="col-sm-9">
                 			<!-- <div class="form-control"></div> -->
                             <div id="productionUploader" class="production-wrapper">
                                 <div class="queueList">
                                     <div id="dndArea" class="placeholder">
                                         <div id="productionPicker"></div>
-                                        <p>或将照片拖到这里</p>
+                                        <p>推荐上传图片大小：350 X 350CM 或者 750 X 350CM</p>
                                     </div>
                                 </div>
                                 <div class="statusBar" style="display:none;">

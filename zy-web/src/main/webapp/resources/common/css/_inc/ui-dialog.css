@@ -47,7 +47,7 @@
     top: -12px;
     cursor: pointer;
     font-size: 50px;
-    color: #fff;
+    /*color: #fff;*/
 }
 .ui-dialog-pop .ui-dialog-ft {
     padding: 20px;

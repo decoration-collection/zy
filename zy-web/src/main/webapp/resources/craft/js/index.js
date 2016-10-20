@@ -2,7 +2,7 @@
  * Created by Karl on 2016/8/10.
  */
 $(function () {
-    $('.icon-wechat').on('click', function () {
+    /*$('.icon-wechat').on('click', function () {
         var dialog = new ZY.Dialog({
             title: '', //窗口标题的html，如果不设置则无标题
             content: '<div><img src="../resources/static/files/wechat.png" /></div>',
@@ -15,5 +15,5 @@ $(function () {
             width: '311px' //窗口宽度，如不传递默认为40%
         });
         dialog.open();
-    });
+    });*/
 });
