@@ -83,8 +83,8 @@ $(function(){
             console.log(response);
             // alert('upload success!');
             $imgStr.push(response.data.url);
-            $imgObj.push(response.data);
-            console.log($imgStr);
+            $imgObj.push(response.data.imglist[0]);
+            // console.log($imgStr);
         });
         // 当有文件添加进来时执行，负责view的创建
         function addFile( file ) {

@@ -1,7 +1,7 @@
 $(function(){
 	var isEdit = $('#craft_id').val() !== '';
 	var postURL = isEdit ? '/zy/admin/crafts/a_edit' : '/zy/admin/crafts/a_add';
-	var allImgObj = [];
+	var allImgObj = [],imgArrayAll = [];
 	//删除已上传图片,更新列表中的已上传图片列表字符串
 	$('.delete-work').on('click',function(){
 		var thiz = $(this);
@@ -17,27 +17,29 @@ $(function(){
 		});
 	});
 	ZY.initMultiUpload(100,function(imgArray,uploader,imgObj){
-		// console.log(res);
+		console.log(imgObj);
 		// sort(imgObj);
-		allImgObj.push(imgObj);
+		for(var k = 0;k<imgObj.length;k++){
+			allImgObj.push(imgObj[k]);
+		}
+		console.log(allImgObj);
 	});
-	function sort(imgObj){
-		var imgArrayL = [],imgArrayM = [],imgArrayAll = [];
+	var sortImg = function(imgObj){
+		var imgArrayL = [],imgArrayM = [];
 		var lengthL, lengthM,sum = 0,l = 0;
-		// if(isEdit){imgObj.push(????)}
 		if(imgObj.length < 4){
-			for(var n;n<imgObj.length;n++){
-				imgArrayAll.push(imgObj[n].url);
+			for(var n = 0;n<imgObj.length;n++){
+				imgArrayAll.push(imgObj[n]);
 			}
 			$('#craft_show').val(imgArrayAll.join(','));
 			return;
 		}
-		for(var i;i<imgObj.length;i++){
+		for(var i = 0;i<imgObj.length;i++){
 			var item = imgObj[i];
-			if(item.size === 'm'){
-				imgArrayM.push(item.url);
+			if(item.width < 351){
+				imgArrayM.push(item);
 			}else {
-				imgArrayL.push(item.url);
+				imgArrayL.push(item);
 			}
 		}
 		lengthL = imgArrayL.length;
@@ -53,7 +55,7 @@ $(function(){
 				imgArrayAll.push(imgArrayM[m]);
 			}
 		}else {
-			for(var m;m<lengthM;m++){
+			for(var m = 0;m<lengthM;m++){
 				sum++;
 				if(sum > 3 && l < lengthL){
 					imgArrayAll.push(imgArrayL[l]);
@@ -66,11 +68,11 @@ $(function(){
 				imgArrayAll.push(imgArrayL[l]);
 			}
 		}
-		$('#craft_show').val(imgArrayAll.join(','));
+		// $('#craft_show').val(imgArrayAll.join(','));
 	}
-	// sort(allImgObj);
 	$('.j_craft_form').on('submit', function(e){
 		e.preventDefault();
+		sortImg(allImgObj);
 		var $form = $(this);
 		var $submitButton = $form.find('.j_submit');
 		if(ZY.button.isLoading($form) || !$form.isValid()){
@@ -79,10 +81,15 @@ $(function(){
 		ZY.button.addLoading($submitButton, isEdit?'保存中' :'新增中', 'loading');
 		var data;
 
-		isEdit ? data = $form.serialize() : data = {
+		isEdit ? data = {
+			craft_id: $('#craft_id').val(),
 			craft_name: $('#craft_name').val(),
-			craft_show: $('#craft_show').val()
+			craft_show: imgArrayAll
+		} : data = {
+			craft_name: $('#craft_name').val(),
+			craft_show: imgArrayAll
 		};
+		console.log(data);
 		ZY.post(postURL, data, function(res){
 			ZY.button.removeLoading($submitButton, isEdit? '保存':'新增');
 			if(res === false){
