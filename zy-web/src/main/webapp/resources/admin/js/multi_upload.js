@@ -4,6 +4,8 @@ $(function(){
             // 图片容器
             $imgStr = [],
             //图片地址字符串
+            $imgObj = [],
+            //储存上传成功的图片对象
             $queue = $('<ul class="filelist"></ul>').appendTo( $wrap.find('.queueList') ),
             // $queue = $('.filelist'),
             // 状态栏，包括进度和控制按钮
@@ -81,6 +83,7 @@ $(function(){
             console.log(response);
             // alert('upload success!');
             $imgStr.push(response.data.url);
+            $imgObj.push(response.data);
             console.log($imgStr);
         });
         // 当有文件添加进来时执行，负责view的创建
@@ -315,7 +318,7 @@ $(function(){
                         var $uploader = $('.multi_upload');
                         $uploader.val($imgStr.join(',')+ "," + $uploader.val());
                         if (callback && $.isFunction(callback)) {
-                            callback($imgStr, uploader);
+                            callback($imgStr, uploader,$imgObj);
                         }
                     } else {
                         // 没有成功的图片，重设
