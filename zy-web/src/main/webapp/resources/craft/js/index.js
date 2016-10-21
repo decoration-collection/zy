@@ -16,29 +16,10 @@ $(function () {
         });
         dialog.open();
     });*/
-    var data = [{
-        url: '/zy/resources/static/files/craft/1.jpg',
-        size: 's'
-    },{
-        url: '/zy/resources/static/files/craft/2.jpg',
-        size: ''
-    },{
-        url: '/zy/resources/static/files/craft/3.jpg',
-        size: ''
-    },{
-        url: '/zy/resources/static/files/craft/4.jpg',
-        size: ''
-    },{
-        url: '/zy/resources/static/files/craft/5.jpg',
-        size: ''
-    },{
-        url: '/zy/resources/static/files/craft/6.jpg',
-        size: ''
-    },{
-        url: '/zy/resources/static/files/craft/7.jpg',
-        size: ''
-    },{
-        url: '/zy/resources/static/files/craft/8.jpg',
-        size: ''
-    }];
+    var $craftClass = $('.j-craft-class');
+    $('.j-craft-class a').on('click',function(){
+        var thiz = $(this);
+        thiz.siblings().removeClass('active');
+        thiz.addClass('active');
+    });
 });

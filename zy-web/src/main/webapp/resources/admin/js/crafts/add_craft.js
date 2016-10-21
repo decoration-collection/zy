@@ -1,6 +1,6 @@
 $(function(){
 	var isEdit = $('#craft_id').val() !== '';
-	var postURL = isEdit ? '/zy/admin/craft/a_edit' : '/zy/admin/craft/a_add';
+	var postURL = isEdit ? '/zy/admin/crafts/a_edit' : '/zy/admin/crafts/a_add';
 	var allImgObj = [];
 	//删除已上传图片,更新列表中的已上传图片列表字符串
 	$('.delete-work').on('click',function(){
@@ -13,11 +13,11 @@ $(function(){
 			console.log(res);
 			$(thiz).parent().remove();
 			$('#craft_show').val(res.data.imgs.join(','));
-			allImgObj.push(???);
+			// allImgObj.push(???);
 		});
 	});
 	ZY.initMultiUpload(100,function(imgArray,uploader,imgObj){
-		console.log(res);
+		// console.log(res);
 		// sort(imgObj);
 		allImgObj.push(imgObj);
 	});
@@ -25,6 +25,13 @@ $(function(){
 		var imgArrayL = [],imgArrayM = [],imgArrayAll = [];
 		var lengthL, lengthM,sum = 0,l = 0;
 		// if(isEdit){imgObj.push(????)}
+		if(imgObj.length < 4){
+			for(var n;n<imgObj.length;n++){
+				imgArrayAll.push(imgObj[n].url);
+			}
+			$('#craft_show').val(imgArrayAll.join(','));
+			return;
+		}
 		for(var i;i<imgObj.length;i++){
 			var item = imgObj[i];
 			if(item.size === 'm'){
@@ -61,7 +68,7 @@ $(function(){
 		}
 		$('#craft_show').val(imgArrayAll.join(','));
 	}
-	sort(allImgObj);
+	// sort(allImgObj);
 	$('.j_craft_form').on('submit', function(e){
 		e.preventDefault();
 		var $form = $(this);
