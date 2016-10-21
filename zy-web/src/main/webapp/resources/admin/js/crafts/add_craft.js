@@ -1,7 +1,18 @@
 $(function(){
 	var isEdit = $('#craft_id').val() !== '';
 	var postURL = isEdit ? '/zy/admin/crafts/a_edit' : '/zy/admin/crafts/a_add';
-	var allImgObj = [],imgArrayAll = [];
+	var allImgObj = [],imgArrayAll = [],finishImgObj = [];
+	//获取已经上传的图片信息
+	$.ajax({
+		type: "post",
+	    url: "/zy/admin/crafts/getImgObj",
+	    data: {craft_id: $('#craft_id').val()},
+	    dataType: "json",
+	    success: function(data){
+	    	console.log(data);
+	    	finishImgObj = data.data;
+	    }
+	});
 	//删除已上传图片,更新列表中的已上传图片列表字符串
 	$('.delete-work').on('click',function(){
 		var thiz = $(this);
@@ -12,8 +23,12 @@ $(function(){
 		ZY.post('/zy/admin/single_del',data,function(res){
 			console.log(res);
 			$(thiz).parent().remove();
-			$('#craft_show').val(res.data.imgs.join(','));
+			finishImgObj.splice(0,finishImgObj.length);
+			// $('#craft_show').val(res.data.imgs.join(','));
 			// allImgObj.push(???);
+			var surplusImgObj = res.data.imglist;
+			
+			finishImgObj =surplusImgObj;
 		});
 	});
 	ZY.initMultiUpload(100,function(imgArray,uploader,imgObj){
@@ -27,11 +42,12 @@ $(function(){
 	var sortImg = function(imgObj){
 		var imgArrayL = [],imgArrayM = [];
 		var lengthL, lengthM,sum = 0,l = 0;
+		imgObj = imgObj.concat(finishImgObj);
 		if(imgObj.length < 4){
 			for(var n = 0;n<imgObj.length;n++){
 				imgArrayAll.push(imgObj[n]);
 			}
-			$('#craft_show').val(imgArrayAll.join(','));
+			// $('#craft_show').val(imgArrayAll.join(','));
 			return;
 		}
 		for(var i = 0;i<imgObj.length;i++){
@@ -69,6 +85,7 @@ $(function(){
 			}
 		}
 		// $('#craft_show').val(imgArrayAll.join(','));
+		console.log(imgArrayAll);
 	}
 	$('.j_craft_form').on('submit', function(e){
 		e.preventDefault();
@@ -84,10 +101,11 @@ $(function(){
 		isEdit ? data = {
 			craft_id: $('#craft_id').val(),
 			craft_name: $('#craft_name').val(),
-			craft_show: imgArrayAll
+			craft_show: JSON.stringify(imgArrayAll)
 		} : data = {
 			craft_name: $('#craft_name').val(),
-			craft_show: imgArrayAll
+			craft_show: JSON.stringify(imgArrayAll)
+
 		};
 		console.log(data);
 		ZY.post(postURL, data, function(res){
