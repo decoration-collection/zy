@@ -10,7 +10,7 @@ $(function(){
 	    dataType: "json",
 	    success: function(data){
 	    	console.log(data);
-	    	finishImgObj = data.data;
+	    	finishImgObj = data.imglist;
 	    }
 	});
 	//删除已上传图片,更新列表中的已上传图片列表字符串
