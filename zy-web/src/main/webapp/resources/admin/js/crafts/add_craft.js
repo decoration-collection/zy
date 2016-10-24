@@ -3,16 +3,19 @@ $(function(){
 	var postURL = isEdit ? '/zy/admin/crafts/a_edit' : '/zy/admin/crafts/a_add';
 	var allImgObj = [],imgArrayAll = [],finishImgObj = [];
 	//获取已经上传的图片信息
-	$.ajax({
-		type: "post",
-	    url: "/zy/admin/crafts/getImgObj",
-	    data: {craft_id: $('#craft_id').val()},
-	    dataType: "json",
-	    success: function(data){
-	    	console.log(data);
-	    	finishImgObj = data.imglist;
-	    }
-	});
+	if(isEdit){
+		$.ajax({
+			type: "post",
+		    url: "/zy/admin/crafts/getImgObj",
+		    data: {craft_id: $('#craft_id').val()},
+		    dataType: "json",
+		    success: function(data){
+		    	console.log(data);
+		    	finishImgObj = data.data.imglist;
+		    }
+		});
+	}
+	
 	//删除已上传图片,更新列表中的已上传图片列表字符串
 	$('.delete-work').on('click',function(){
 		var thiz = $(this);
@@ -61,7 +64,7 @@ $(function(){
 		lengthL = imgArrayL.length;
 		lengthM = imgArrayM.length;
 		if(lengthM > lengthL){
-			for(var m;m<lengthM;m++){
+			for(var m = 0;m<lengthM;m++){
 				sum++;
 				if(sum > 3 && l < lengthL){
 					imgArrayAll.push(imgArrayL[l]);
