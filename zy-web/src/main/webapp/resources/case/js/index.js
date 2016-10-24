@@ -45,7 +45,16 @@ $(function () {
     });
 
     $topLis.on('click', function () {
-        var thiz = $(this), flag = thiz.data('type'), dom = renderDom(flag);
+        var thiz = $(this), 
+            flag = thiz.data('type'), 
+            caseObj = {
+                build : thiz.data('build'),
+                styleName : thiz.data('style-name'),
+                designer : thiz.data('designer-name'),
+                desc : thiz.data('desc'),
+                caseImgs : thiz.data('aimgs').split(","),
+            },
+            dom = renderDom(caseObj);
         var dialog = new ZY.Dialog({
             title: '', //窗口标题的html，如果不设置则无标题
             content: dom,
@@ -59,11 +68,11 @@ $(function () {
         });
         dialog.open();
     });
-    function renderDom(flag) {
-        var list = ['<div class="text-wrapper"><div>楼盘名称：江山丽景<span class="style-label">美式<span></div><div>设计师：xxx</div><div>详细描述：江山丽景洋房室内设计详细描述</div></div>'];
-        for (var i = 0, size = imgs[flag].length; i < size; i++) {
-            var item = imgs[flag];
-            list.push('<img src="' + item[i] + '"/>');
+    function renderDom(obj) {
+        var list = ['<div class="text-wrapper"><div>楼盘名称：'+obj.build+'<span class="style-label">'+obj.styleName+'<span></div><div>设计师：'+obj.designer+'</div><div>详细描述：'+obj.desc+'</div></div>'];
+        for (var i = 0, size = obj.caseImgs.length; i < size; i++) {
+            var item = obj.caseImgs;
+            list.push('<div class="case-img"><img src="' + item[i] + '"/></div>');
         }
         return list.join('');
     }

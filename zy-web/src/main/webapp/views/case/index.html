@@ -3,9 +3,26 @@
 </@override>
 <@override name="content">
 <div class="content">
+<!-- <#assign caseObj=""/> -->
     <div class="grid">
+        <div class="style-class j-style-class">
+            <label>风格分类：</label>
+            <a href="#">法式</a>
+            <a href="#">小美式</a>
+            <a href="#">新中式</a>
+        </div>
         <ul>
-            <li class="c-top-li" data-type="fr">
+        <#list caselist as item>
+        <li class="c-top-li" data-type="fr" data-build="${item.build}" data-style-name="${item.styleForm.name}" data-designer-name="${item.designerForm.name}" data-desc="${item.desc}" data-aimgs="${item.aimgs}">
+            <div class="c-li-image">
+                <img src="${(item.aimgs)?substring(0,(item.aimgs?index_of(',')))}" alt="france">
+            </div>
+            <div class="c-li-desc">${item.name}</div>
+            <div class="c-li-mask"></div>
+            <div class="c-li-button">VIEW MORE</div>
+        </li>
+        </#list>
+        <!-- <li class="c-top-li" data-type="fr">
                 <div class="c-li-image">
                     <img src="/zy/resources/static/files/case/topFrance.jpg" alt="france">
                 </div>
@@ -29,6 +46,7 @@
                 <div class="c-li-mask"></div>
                 <div class="c-li-button">VIEW MORE</div>
             </li>
+         -->
         </ul>
     </div>
 </div>
