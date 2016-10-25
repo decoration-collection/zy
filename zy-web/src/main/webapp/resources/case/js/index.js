@@ -6,8 +6,27 @@ $(function () {
        $('.content').css('min-height', Math.max($(window).height() - 90 - 40, $('.menu').height()));
     }
     resizeRender();
-
-    var imgs = {
+    function getUrlParam(name){
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i'),
+            r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return (r[2]);
+        }else{
+            return null;
+        }
+    }
+    var thisId = getUrlParam('style_id'),
+        $styleList = $('.j-style-class a');
+        if( thisId ){ 
+            $styleList.removeClass('active'); 
+            for(var i = 0; i < $styleList.length; i++){
+                var $thisStyle = $($styleList[i]);
+                if(thisId == $thisStyle.data('style-id')){
+                    $thisStyle.addClass('active');
+                }
+            }
+        }
+   /* var imgs = {
         'fr': [
             '/zy/resources/static/files/case/topFrance.jpg',
             '/zy/resources/static/files/case/topFrance1.jpg',
@@ -36,7 +55,7 @@ $(function () {
             '/zy/resources/static/files/case/topChinese8.jpg'
         ]
     };
-
+*/
     var $topLis = $('.c-top-li');
     $topLis.hover(function () {
         $(this).addClass('hover');

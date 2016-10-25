@@ -7,8 +7,9 @@
     <div class="grid">
         <div class="style-class j-style-class">
             <label>风格分类：</label>
-            <#list caselist as item>
-                <a href="/zy/case/index?style_id=${item.styleForm.style_id}">${item.styleForm.name}</a>
+            <a href="/zy/case/index" class="active">全部分类</a>
+            <#list stylelist as item>
+                <a href="/zy/case/index?style_id=${item.style_id}" data-style-id="${item.style_id}">${item.name}</a>
             </#list>
             <!-- <a href="#">法式</a>
             <a href="#">小美式</a>
