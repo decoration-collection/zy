@@ -26,36 +26,6 @@ $(function () {
                 }
             }
         }
-   /* var imgs = {
-        'fr': [
-            '/zy/resources/static/files/case/topFrance.jpg',
-            '/zy/resources/static/files/case/topFrance1.jpg',
-            '/zy/resources/static/files/case/topFrance2.jpg',
-            '/zy/resources/static/files/case/topFrance3.jpg',
-            '/zy/resources/static/files/case/topFrance4.jpg'
-        ],
-        'am': [
-            '/zy/resources/static/files/case/topAmerica.jpg',
-            '/zy/resources/static/files/case/topAmerica2.jpg',
-            '/zy/resources/static/files/case/topAmerica3.jpg',
-            '/zy/resources/static/files/case/topAmerica4.jpg',
-            '/zy/resources/static/files/case/topAmerica5.jpg',
-            '/zy/resources/static/files/case/topAmerica6.jpg',
-            '/zy/resources/static/files/case/topAmerica7.jpg',
-            '/zy/resources/static/files/case/topAmerica8.jpg'
-        ],
-        'ch': [
-            '/zy/resources/static/files/case/topChinese.jpg',
-            '/zy/resources/static/files/case/topChinese2.jpg',
-            '/zy/resources/static/files/case/topChinese3.jpg',
-            '/zy/resources/static/files/case/topChinese4.jpg',
-            '/zy/resources/static/files/case/topChinese5.jpg',
-            '/zy/resources/static/files/case/topChinese6.jpg',
-            '/zy/resources/static/files/case/topChinese7.jpg',
-            '/zy/resources/static/files/case/topChinese8.jpg'
-        ]
-    };
-*/
     var $topLis = $('.c-top-li');
     $topLis.hover(function () {
         $(this).addClass('hover');

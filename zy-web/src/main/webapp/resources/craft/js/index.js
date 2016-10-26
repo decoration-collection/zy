@@ -29,7 +29,6 @@ $(function () {
                     (351 > Number(imgItem.width)) ? allImg.push('<div class="img-wrapper parent-3"><img src="'+imgItem.url+'" alt="" title=""/><p>'+item.craft_name+'</p></div>') : allImg.push('<div class="img-wrapper parent-7"><img src="'+imgItem.url+'" alt="" title=""/><p>'+item.craft_name+'</p></div>');
                 }
             }
-            
             allImg.push('<br/>');
             
         }
