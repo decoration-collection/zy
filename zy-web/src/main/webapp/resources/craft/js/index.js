@@ -5,7 +5,7 @@ $(function () {
     var allClass = ['<label>工艺标准分类：</label><a href="/zy/craft/index" class="j_getall">全部工艺</a>'];
     var allImg = [];
     var list = JSON.parse($('#craftList').text());
-    console.log(list);
+    // console.log(list);
     function layout(list,id){
             allClass.splice(1,allImg.length);//清空图片数组
             allImg.splice(0,allImg.length);//清空图片数组

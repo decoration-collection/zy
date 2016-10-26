@@ -10,7 +10,7 @@ $(function(){
 		    data: {craft_id: $('#craft_id').val()},
 		    dataType: "json",
 		    success: function(data){
-		    	console.log(data);
+		    	// console.log(data);
 		    	finishImgObj = data.data.imglist;
 		    }
 		});
@@ -24,7 +24,7 @@ $(function(){
 			img_path: thiz.siblings('img').attr('src')
 		};
 		ZY.post('/zy/admin/single_del',data,function(res){
-			console.log(res);
+			// console.log(res);
 			$(thiz).parent().remove();
 			finishImgObj.splice(0,finishImgObj.length);
 			// $('#craft_show').val(res.data.imgs.join(','));
@@ -35,12 +35,12 @@ $(function(){
 		});
 	});
 	ZY.initMultiUpload(100,function(imgArray,uploader,imgObj){
-		console.log(imgObj);
+		// console.log(imgObj);
 		// sort(imgObj);
 		for(var k = 0;k<imgObj.length;k++){
 			allImgObj.push(imgObj[k]);
 		}
-		console.log(allImgObj);
+		// console.log(allImgObj);
 	});
 	var sortImg = function(imgObj){
 		var imgArrayL = [],imgArrayM = [];
@@ -88,7 +88,7 @@ $(function(){
 			}
 		}
 		// $('#craft_show').val(imgArrayAll.join(','));
-		console.log(imgArrayAll);
+		// console.log(imgArrayAll);
 	}
 	$('.j_craft_form').on('submit', function(e){
 		e.preventDefault();
@@ -110,7 +110,7 @@ $(function(){
 			craft_show: JSON.stringify(imgArrayAll)
 
 		};
-		console.log(data);
+		// console.log(data);
 		ZY.post(postURL, data, function(res){
 			ZY.button.removeLoading($submitButton, isEdit? '保存':'新增');
 			if(res === false){
