@@ -22,6 +22,8 @@ public class AdminDesignerService {
 	@Autowired
 	private AdminImgService adminImgService;
 	
+	private static final String DESIGNER_CATEGRY = "designer";
+	
 	@Transactional
 	public void addDesigner(DesignerForm form) {
 		ZYDesigner designer = new ZYDesigner();
@@ -43,7 +45,7 @@ public class AdminDesignerService {
 			String[] workShowArray = workShows.split(",");
 			for(String work_show : workShowArray) {
 				if(null != work_show && !"".equals(work_show)) {
-					adminImgService.insertSingleImg(refrenceId, "desinger", work_show);
+					adminImgService.insertSingleImg(refrenceId, DESIGNER_CATEGRY, work_show);
 				}
 			}
 		}
@@ -65,14 +67,14 @@ public class AdminDesignerService {
 		designer.setUpdateTime(now);
 		designerMapper.updateByPrimaryKey(designer);
 		
-		adminImgService.delImgByReferenceId(designerId);
+		adminImgService.delImgByReferenceId(designerId,DESIGNER_CATEGRY);
 		
 		String workShows = form.getWorks_show();
 		if(null != workShows && !"".equals(workShows)) {
 			String[] workShowArray = workShows.split(",");
 			for(String work_show : workShowArray) {
 				if(null != work_show && !"".equals(work_show)) {
-					adminImgService.insertSingleImg(designerId, "desinger", work_show);
+					adminImgService.insertSingleImg(designerId, DESIGNER_CATEGRY, work_show);
 				}
 			}
 		}
@@ -96,7 +98,7 @@ public class AdminDesignerService {
 			form.setWorking_time(zyDesigner.getWorktime());
 			form.setWorks(zyDesigner.getWorks());
 			
-			form.getShows().addAll(adminImgService.findImgByReferenceId(zyDesigner.getDesignerId()));
+			form.getShows().addAll(adminImgService.findImgByReferenceId(zyDesigner.getDesignerId(),DESIGNER_CATEGRY));
 			
 			result.add(form);
 		}
@@ -115,7 +117,7 @@ public class AdminDesignerService {
 		form.setWorking_time(zyDesigner.getWorktime());
 		form.setWorks(zyDesigner.getWorks());
 		
-		form.getShows().addAll(adminImgService.findImgByReferenceId(designerId));
+		form.getShows().addAll(adminImgService.findImgByReferenceId(designerId,DESIGNER_CATEGRY));
 
 		return form;
 	}
@@ -123,7 +125,7 @@ public class AdminDesignerService {
 	@Transactional
 	public void delDesignerById(int designerId) {
 		designerMapper.deleteByPrimaryKey(designerId);
-		adminImgService.delImgByReferenceId(designerId);
+		adminImgService.delImgByReferenceId(designerId,DESIGNER_CATEGRY);
 	}
 	
 }

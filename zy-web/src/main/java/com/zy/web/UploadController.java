@@ -1,16 +1,21 @@
 package com.zy.web;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,6 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.zy.service.admin.form.ImgForm;
 import com.zy.util.DateFormatUtil;
 import com.zy.util.ResultMap;
 
@@ -45,8 +51,10 @@ public class UploadController {
 
 	@RequestMapping("/upload")
 	@ResponseBody
-	public Object addUser(@RequestParam("file") CommonsMultipartFile[] files,
+	public Object singleUpload(@RequestParam("file") CommonsMultipartFile[] files,
 			HttpServletRequest request) {
+		FileOutputStream os = null;
+		InputStream inputStream = null;
 		try {
 			String ctxPath = request.getSession().getServletContext()
 					.getRealPath("/");
@@ -66,10 +74,9 @@ public class UploadController {
 					String filename = System.currentTimeMillis() + "_"
 							+ files[i].getOriginalFilename();
 					// 拿到输出流，同时重命名上传的文件
-					FileOutputStream os = new FileOutputStream(fileBasePath
-							+ filename);
+					os = new FileOutputStream(fileBasePath+ filename);
 					// 拿到上传文件的输入流
-					InputStream inputStream = files[i].getInputStream();
+					inputStream = files[i].getInputStream();
 					if(inputStream instanceof FileInputStream) {
 						inputStream = (FileInputStream) files[i].getInputStream();
 					} else {
@@ -100,6 +107,22 @@ public class UploadController {
 		} catch (Exception e) {
 			logger.error("上传文件异常", e);
 			return ResultMap.buildMap(500, "fail", null);
+		} finally {
+				if(os != null) {
+					try {
+						os.close();
+					} catch (Exception e) {
+						logger.error("关闭流异常",e);
+					}
+				}
+				if(inputStream != null) {
+					try {
+						inputStream.close();
+					} catch (Exception e) {
+						logger.error("关闭流异常",e);
+					}
+				}
+			
 		}
 	}
 
@@ -109,7 +132,7 @@ public class UploadController {
 			HttpServletResponse response) throws IllegalStateException,
 			IOException {
 		try {
-
+			List<ImgForm> imgList = new ArrayList<ImgForm>();
 			String ctxPath = request.getSession().getServletContext()
 					.getRealPath("/");
 			String filePath = "resources/files/"
@@ -142,14 +165,23 @@ public class UploadController {
 						if (myFileName.trim() != "") {
 							logger.info("fileName=" + myFileName);
 							// 重命名上传后的文件名
-							String fileName = System.currentTimeMillis() + "_"
-									+ file.getOriginalFilename();
+							String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
 							// 定义上传路径
 							String path = fileBasePath + fileName;
 							File localFile = new File(path);
 							file.transferTo(localFile);
-							resUrlBuffer.append(FILE_BASE_PATH)
-									.append(filePath).append(fileName).append(",");
+							resUrlBuffer.append(FILE_BASE_PATH).append(filePath).append(fileName).append(",");
+							
+							BufferedImage bufferedImage = ImageIO.read(localFile);   
+							int width = bufferedImage.getWidth();   
+							int height = bufferedImage.getHeight();
+							
+							ImgForm imgForm = new ImgForm();
+							imgForm.setUrl(FILE_BASE_PATH + filePath + fileName);
+							imgForm.setHeight(height);
+							imgForm.setWidth(width);
+							
+							imgList.add(imgForm);
 						}
 					}
 					// 记录上传该文件后的时间
@@ -161,13 +193,13 @@ public class UploadController {
 			Map<String, Object> urlMap = new HashMap<String, Object>();
 			int urlLength = resUrlBuffer.toString().length();
 			urlMap.put("url", resUrlBuffer.toString().substring(0, urlLength - 1));
-
+			urlMap.put("imglist", imgList);
 			logger.info("urlMap=" + urlMap);
 			return ResultMap.buildMap(0, "success", urlMap);
 		} catch (Exception e) {
 			logger.error("上传文件异常", e);
 			return ResultMap.buildMap(500, "fail", null);
-		}
+		} 
 	}
 
 	@RequestMapping("/toUpload")

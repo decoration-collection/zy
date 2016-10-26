@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.zy.dao.mapper.ZYImgMapper;
+import com.zy.dao.model.ZYImg;
 import com.zy.service.admin.AdminDesignerService;
 import com.zy.service.admin.AdminImgService;
 import com.zy.service.admin.form.DesignerForm;
@@ -30,6 +32,9 @@ public class AdminDesignerController {
 	
 	@Autowired
 	private AdminImgService adminImgService;
+	
+	@Autowired
+	private ZYImgMapper imgMapper;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminDesignerController.class);
 
@@ -121,8 +126,13 @@ public class AdminDesignerController {
 	public Object designerWorksDel(String designer_id,String works_path) {
 		try {
 			logger.info("/admin/designers/del_works删除作品,designer_id：" + designer_id + ",path=" + works_path);
-			adminImgService.delImgByCondition(Integer.parseInt(designer_id),works_path);
-			List<String> works = adminImgService.findImgByReferenceId(Integer.parseInt(designer_id));
+			
+			ZYImg img = adminImgService.findImgByCondition(Integer.parseInt(designer_id),works_path);
+			if(null != img) {
+				imgMapper.deleteByPrimaryKey(img.getImgId());
+			} 
+			
+			List<String> works = adminImgService.findImgByReferenceId(Integer.parseInt(designer_id),img.getDes());
 			Map<String,Object> dataMap = new HashMap<String,Object>();
 			dataMap.put("works", new Gson().toJson(works));
 			return ResultMap.buildMap(0, "success", dataMap);

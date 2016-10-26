@@ -55,30 +55,6 @@ public class UserController {
 		ModelAndView view = new ModelAndView("about/index",modelMap);
 		return view;
 	}
-	@RequestMapping(value="/case/index")
-	public ModelAndView caseIndex(ModelMap modelMap) {
-		
-		ModelAndView view = new ModelAndView("case/index",modelMap);
-		return view;
-	}
-	@RequestMapping(value="/craft/index")
-	public ModelAndView craftIndex(ModelMap modelMap) {
 
-		ModelAndView view = new ModelAndView("craft/index",modelMap);
-		return view;
-	}
-	@RequestMapping(value="/admin/crafts/add")
-	public ModelAndView craftAdd(ModelMap modelMap) {
-		
-		ModelAndView view = new ModelAndView("/admin/crafts/add_craft",modelMap);
-		return view;
-	}
-	@RequestMapping(value="/admin/crafts/all")
-	public ModelAndView craftAll(ModelMap modelMap) {
-		
-		ModelAndView view = new ModelAndView("/admin/crafts/all_crafts",modelMap);
-		return view;
-	}
-	
 
 }
