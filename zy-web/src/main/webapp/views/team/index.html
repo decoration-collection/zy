@@ -6,9 +6,17 @@
     <div class="grid">
         <!-- <p>TEAM Page</p> -->
         <ul class="team-list">
-        <#list designerlist as item>
-            <li class="j-designer-li" data-name="${item.name}" data-working-time="${item.working_time}"  data-design-concept="${item.design_concept}" data-honor="${item.honor}" data-works="${item.works}" data-works-show="${item.works_show}">
-                <a href="javascript:;" class="designer-img"><img src="${item}"/></a>
+        <#list designerslist as item>
+            <#assign shows=""/>
+            <#list item.shows as showsItem>
+                <#if shows == "">
+                    <#assign shows= shows+showsItem/> 
+                <#else>
+                    <#assign shows= shows+","+showsItem/> 
+                </#if>
+            </#list>
+            <li class="j-designer-li" data-name="${item.name}" data-designer-img="${item.designer_img}" data-working-time="${item.working_time}" data-design-concept="${item.design_concept}" data-honor="${item.honor}" data-works="${item.works}" data-shows="${shows}">
+                <a href="javascript:;" class="designer-img"><img src="${item.designer_img}"/></a>
                 <div class="text-wrapper">
                     <p class="name">${item.name}</p>
                     <p class="time">${item.working_time}</p>

@@ -32,7 +32,7 @@
                 	<div class="form-group">
                 		<label for="name" class="col-sm-3 control-label">姓名</label>
                 		<div class="col-sm-5">
-                    		<input type="text" name="name" value="${(designersobj.name)!}" class="form-control" id="name" placeholder="请输入设计师姓名">
+                    		<input type="text" name="name" value="${(designersobj.name)!}" class="form-control" id="name" placeholder="请输入设计师姓名" required>
                   		</div>
                 	</div>
                 	<div class="form-group">
@@ -49,6 +49,12 @@
                             <div class="img-size">推荐上传大小：290 x 400像素</div>
                 		</div>
                 	</div>
+                   <!--  <div class="form-group">
+                       <label for="job_title" class="col-sm-3 control-label">职称</label>
+                       <div class="col-sm-5">
+                           <input type="text" name="job_title" class="form-control" id="job_title" placeholder="请输入设计师职称" value="${(designersobj.job_title)!}" >
+                       </div>
+                   </div> -->
                 	<div class="form-group">
                 		<label for="working_time" class="col-sm-3 control-label">从业时间</label>
                 		<div class="col-sm-5">
@@ -65,19 +71,19 @@
                 	<div class="form-group">
                 		<label for="design_concept" class="col-sm-3 control-label">设计理念</label>
                 		<div class="col-sm-5">
-                			<textarea name="design_concept" value="" class="form-control" id="design_concept" rows="3" placeholder="Enter ...">${(designersobj.design_concept)!}</textarea>
+                			<textarea name="design_concept" value="" class="form-control" id="design_concept" rows="3" placeholder="请输入设计理念" required>${(designersobj.design_concept)!}</textarea>
                 		</div>
                 	</div>
                 	<div class="form-group">
                 		<label for="honor" class="col-sm-3 control-label">获得荣誉</label>
                 		<div class="col-sm-5">
-                			<textarea name="honor" value="" class="form-control" id="honor" rows="3" placeholder="Enter ...">${(designersobj.honor)!}</textarea>
+                			<textarea name="honor" value="" class="form-control" id="honor" rows="3" placeholder="请输入荣誉项目" required>${(designersobj.honor)!}</textarea>
                 		</div>
                 	</div>
                     <div class="form-group">
                         <label for="works" class="col-sm-3 control-label">代表作品</label>
                         <div class="col-sm-5">
-                            <textarea name="works" value="" class="form-control" id="works" rows="3" placeholder="Enter ...">${(designersobj.works)!}</textarea>
+                            <textarea name="works" value="" class="form-control" id="works" rows="3" placeholder="请输入代表作品名称" required>${(designersobj.works)!}</textarea>
                         </div>
                     </div>
                     <#if isEdit == true>
@@ -125,7 +131,7 @@
                     <label for="" class="col-sm-3 control-label"></label>
 	            	<!-- <button type="submit" class="btn btn-default">Cancel</button> -->
                     <div class="col-sm-5">
-                        <button type="submit" class="btn btn-info j_submit"><#if isEdit == true>保存</#if><#if isEdit == false>新增</#if></button>${isEdit?string}
+                        <button type="submit" class="btn btn-info j_submit"><#if isEdit == true>保存</#if><#if isEdit == false>新增</#if></button>
                     </div>
 	            </div>
             </form>

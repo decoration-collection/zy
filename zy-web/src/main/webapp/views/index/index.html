@@ -21,10 +21,12 @@
         <h3>家居风格</h3>
         <em>FAMILY STYLE</em>
         <ul>
+        <#assign sum=0/>
         <#list stylelist as item>
-            <a href="/case/index?${item.style_id}">
+        <#assign sum=sum+1/>
+            <a href="/zy/case/index?style_id=${item.style_id}">
                 <li class="c-tech-li">
-                    <img src="${item.img_path}" alt="case1">
+                    <img src="${item.img_path}" alt="${item.name}">
                     <div class="c-tech-info">
                         <h4>${item.name}</h4>
                         <p>${item.desc}</p>
@@ -32,6 +34,7 @@
                     </div>
                 </li>
             </a>
+            <#if sum ==3 ><#break></#if>
         </#list>
             <!-- <a href="/case/index">
                 <li class="c-tech-li">
