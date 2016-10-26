@@ -34,9 +34,12 @@ $(function () {
     });
     function renderDom(obj) {
         var list = ['<div class="designer-detail"><div class="designer-img"><img src="'+obj.designerImg+'"></div><div class="designer-intro"><h3>'+obj.name+'</h3><p>从业时间：'+obj.workingTime+'</p><p>设计理念：'+obj.designConcept+'</p><p>擅长风格：欧式、现代、地中海、美式、等…</p><p>获得荣誉：'+obj.honor+'</p><p>代表作品：'+obj.works+'</p><div class="works">'];
+        var sum = 0;
         for (var i = 0, size = obj.shows.length; i < size; i++) {
+            sum +=1;
             var item = obj.shows;
             list.push('<div class="works-showr"><img src="' + item[i]+ '"/></div>');
+            if(sum === 4){break;}
         }
         list.push('</div></div></div>');
         return list.join('');
