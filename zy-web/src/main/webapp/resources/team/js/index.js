@@ -33,7 +33,7 @@ $(function () {
         dialog.open();
     });
     function renderDom(obj) {
-        var list = ['<div class="designer-detail"></a><img src="'+obj.designerImg+'"><div class="designer-intro"><h3>'+obj.name+'</h3><p class="duty">首席设计师</p><p>从业时间：'+obj.workingTime+'</p><p>设计理念：'+obj.designConcept+'</p><p>擅长风格：欧式、现代、地中海、美式、等…</p><p>获得荣誉：'+obj.honor+'</p><p>代表作品：'+obj.works+'</p><div class="works">'];
+        var list = ['<div class="designer-detail"><div class="designer-img"><img src="'+obj.designerImg+'"></div><div class="designer-intro"><h3>'+obj.name+'</h3><p>从业时间：'+obj.workingTime+'</p><p>设计理念：'+obj.designConcept+'</p><p>擅长风格：欧式、现代、地中海、美式、等…</p><p>获得荣誉：'+obj.honor+'</p><p>代表作品：'+obj.works+'</p><div class="works">'];
         for (var i = 0, size = obj.shows.length; i < size; i++) {
             var item = obj.shows;
             list.push('<div class="works-showr"><img src="' + item[i]+ '"/></div>');
