@@ -9,6 +9,12 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:/spring-all.xml</param-value>
 	</context-param>
+	
+	<listener>
+	    <listener-class>
+	        se.jiderhamn.classloader.leak.prevention.ClassLoaderLeakPreventor
+	    </listener-class>
+	</listener>
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
