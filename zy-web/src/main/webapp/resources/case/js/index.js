@@ -59,9 +59,12 @@ $(function () {
     });
     function renderDom(obj) {
         var list = ['<div class="text-wrapper"><div>楼盘名称：'+obj.build+'<span class="style-label">'+obj.styleName+'<span></div><div>设计师：'+obj.designer+'</div><div>详细描述：'+obj.desc+'</div></div>'];
+        var sum = 0;
         for (var i = 0, size = obj.caseImgs.length; i < size; i++) {
             var item = obj.caseImgs;
+            sum += 1;
             list.push('<div class="case-img"><img src="' + item[i] + '"/></div>');
+            if(sum === 8){break;}
         }
         return list.join('');
     }

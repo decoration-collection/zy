@@ -27,7 +27,7 @@ $(function(){
 			img_path: $(this).siblings('img').attr('src')
 		};
 		ZY.post('/zy/admin/single_del',data,function(res){
-			console.log(res);
+			// console.log(res);
 			$(thiz).parent().remove();
 			$('#works_show').val(res.data.imgs.join(','));
 		});
